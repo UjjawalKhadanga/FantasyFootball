@@ -1,5 +1,6 @@
 import React,{useState} from "react";
 import MultiRangeSlider from "multi-range-slider-react";
+import axios from "axios";
 
 export default function SelectionForm() {
     const [minValue, set_minValue] = useState(0);
@@ -24,6 +25,7 @@ export default function SelectionForm() {
           <option>forward</option>
           <option>midfielder</option>
           <option>defender</option>
+          <option>goalkeeper</option>
         </select>
       </div>
         <label for="player-cost" class="form-label">
@@ -50,10 +52,11 @@ export default function SelectionForm() {
             Name
           </label>
           <input
-            type="email"
+            type="search"
             className="form-control"
             id="player-name"
             aria-describedby="player"
+            name="name"
           />
         </div>
         <button type="submit" className="btn btn-primary mb-3 w-100">
