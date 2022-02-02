@@ -15,27 +15,28 @@ var teamcodes =
    'Liverpool', 'Man City','Man Utd',  'Newcastle','Norwich', 'Southampton','Spurs',  'Watford','West Ham',  'Wolves'
 	];
 
-router.post('/', (req, res) => {
-	console.log(req.body.pname);
+router.get('/', (req, res) => {
+
+	console.log(req.body);
 	var results = [];
 
 	for(var i=0; i<data.elements.length; i++)
 	{
-		if(data.elements[i].first_name.toLowerCase() == req.body.pname.toLowerCase() ||
-		data.elements[i].second_name.toLowerCase() == req.body.pname.toLowerCase() ||
-		data.elements[i].web_name.toLowerCase() == req.body.pname.toLowerCase())
+		if(data.elements[i].first_name.toLowerCase() == "james".toLowerCase() ||
+		data.elements[i].second_name.toLowerCase() == "james".toLowerCase() ||
+		data.elements[i].web_name.toLowerCase() == "james".toLowerCase())
 		{
 			results.push(data.elements[i]);
 		}
 	}
 
 	send_data = {
-		input: req.body.pname,
+		input: "james",
 		result: results,
 		teams: teamcodes
 	}
 
-	res.render("player", send_data);
+	res.send(send_data);
 });
 
 module.exports = router;
