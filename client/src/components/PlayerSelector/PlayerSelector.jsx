@@ -3,11 +3,11 @@ import SelectionForm from './SelectionForm';
 import PlayerSearchResultsDisplay from './PlayerSearchResultsDisplay';
 
 
-export default function PlayerSelector() {
+export default function PlayerSelector(props) {
   return (
-      <>
+      <div className='col-3'>
       <SelectionForm/>
-      <PlayerSearchResultsDisplay/>
-      </>
+      <PlayerSearchResultsDisplay p_selected={props.p_selected}/>
+      </div>
   );
 }
