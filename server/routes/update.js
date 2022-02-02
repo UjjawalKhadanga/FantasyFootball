@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
         console.log(err);
         }else{
         data = JSON.parse(body);
-        fs.writeFile("C:/Users/Dev Prajapat/Documents/Dev projects/Fantasy_league/serv/db/gamedata.txt", JSON.stringify(data), (err) => {
+        fs.writeFile("./db/gamedata.txt", JSON.stringify(data), (err) => {
             if(err) throw err;
         });
         }
@@ -25,7 +25,7 @@ router.get("/", (req, res) => {
         console.log(err);
         }else{
         data = JSON.parse(body);
-        fs.writeFile("C:/Users/Dev Prajapat/Documents/Dev projects/Fantasy_league/serv/db/fixtures.txt", JSON.stringify(data), (err) => {
+        fs.writeFile("./db/fixtures.txt", JSON.stringify(data), (err) => {
             if(err) throw err;
         });
         }

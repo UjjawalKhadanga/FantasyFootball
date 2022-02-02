@@ -7,7 +7,6 @@ export default function PlayerSelector(props) {
   return (
       <div className='col-3'>
       <SelectionForm/>
-      <PlayerSearchResultsDisplay p_selected={props.p_selected}/>
       </div>
   );
 }
