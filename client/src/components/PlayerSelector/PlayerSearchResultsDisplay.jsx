@@ -1,42 +1,33 @@
 import React from 'react';
 
 function PlayerMeta(props) {
-  var fname;
-	if(props.firstname){fname = props.firstname[0];}
 	var playerr_details = {
 			details: props.details,
 			team: props.team,
 			pos: props.pos,
 			photo: props.photo
 	}
+  console.log(playerr_details)
 	return (
-	<li className="list-group-item">
-			
-		<div className="row align-content-center" onClick={() => {props.p_selected(playerr_details)}} style={{cursor: "pointer"}}>
-			<div className='player-team col-1'>{props.pos}</div>
+	<li className="list-group-item " style={{fontSize: 15}}>
+		<div className="player-meta d-flex" onClick={() => {props.p_selected(playerr_details)}} style={{cursor: "pointer"}}>
 			<div className="player-photo col-2">
 				<img src={props.photo} height={50}></img>
 			</div>
-			<div className="name d-flex col-5">
-				<div className="first-name">{fname}.</div>
+			<div className="name d-flex col-3 flex-column">
+				<div className="first-name">{props.firstname}</div>
 				<div className="last-name">{props.secondname}</div>
 			</div>
-				
-			<div className="player-position col-2">
-					{props.team}
-			</div>
-			<div className="player-number col-2 badge bg-success pt-2 mb-4">£{props.price} </div>
-				
+      <div className='player-team col-2 d-flex justify-content-center'>{props.pos}</div>
+			<div className="player-position col-3 d-flex justify-content-center">{props.team}</div>
+			<div className="player-number col-2 badge bg-success mt-2 mb-2 d-flex justify-content-center align-items-center">£{props.price}</div>
 		</div>
 	</li>
-      
   );
 }
 
 
-
 export default function PlayerSearchResultsDisplay(props) {
-
   //for player images
   const imgcode = (code) => {
       const img = "https://resources.premierleague.com/premierleague/photos/players/110x140/p"
@@ -44,33 +35,45 @@ export default function PlayerSearchResultsDisplay(props) {
       return img;
   };
 
-  const data=props.searchResults;
+  //team code to team name
+  const findteam = (code) => {
+      return  props.searchResults.teams[code-1];
+  }
+  console.log(props.searchResults)
 
   const pos = ["GKP", "DEF", "MID", "FWD"];
 
+  if(props.searchResults.result.length === 0){
+    return (
+      <div className="m-3 border border-2 border-dark p-0 col-3 d-flex flex-column justify-content-center align-items-center">
+        <div className="row">
+          <div className="col-12">
+            <div className='d-flex justify-content-center'>No Players Found</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
-    <div className="m-3 border border-2 border-dark p-0 col d-flex flex-column justify-content-center align-items-center">
-      <ul class="list-group">
-      {/* <PlayerMeta details={data.result[0]}
-                  price={data.result[0].now_cost/10}
-                  pos={pos[data.result[0].element_type-1]}
-                  firstname={data.result[0].first_name} 
-                  secondname={data.result[0].second_name} 
-                  team={data.teams[data.result[0].team - 1].short_name} 
-                  photo={imgcode(data.result[0].code)}
-                  p_selected={props.p_selected}/>   */}
+    <div className="m-3 border border-2 border-dark p-0 col-3 d-flex flex-column justify-content-center align-items-center">
+      <ul class="list-group w-100">
+        {props.searchResults.result.map((player) => {
+          console.log(player)
+          return (
+            <PlayerMeta
+              key={player.id}
+              details={player}
+              team={findteam(player.team)}
+              pos={pos[player.element_type-1]}
+              photo={imgcode(player.code)}
+              firstname={player.first_name}
+              secondname={player.second_name[0]+'.'}
+              price={player.now_cost}
+              p_selected={props.p_selected}
+            />
+          );
+        })}
       </ul>
-      {/* {Object.keys(data.result).map((p, idx)=>{
-              return <PlayerMeta details={data.result[p]}
-                      price={data.result[p].now_cost/10}
-                      pos={pos[data.result[p].element_type-1]}
-                      firstname={data.result[p].first_name} 
-                      secondname={data.result[p].second_name} 
-                      team={data.teams[data.result[p].team - 1].short_name} 
-                      photo={imgcode(data.result[p].code)}
-                      p_selected={props.p_selected}/>              
-      })
-      } */}
     </div>
   );
       

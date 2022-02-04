@@ -4,27 +4,25 @@ import PlayerSelector from './components/PlayerSelector/PlayerSelector';
 import PlayerStats from './components/PlayerStats';
 import MyTeamList from './components/MyTeamList';
 import React from 'react';
-import PlayerSearchResultsDisplay from './components/PlayerSelector/PlayerSearchResultsDisplay';
 
 function App() {
   
-  // //player selected from list
-  // const [pdata, setPdata] = React.useState("");
-  // const ctp = (cdata) => {
-  //     setPdata(cdata);
-  // }
-  // React.useEffect(() => {
-  //     //console.log(pdata);
-  // }, [pdata])
+  //player selected from list
+  const [pdata, setPdata] = React.useState("");
+  const ctp = (cdata) => {
+      setPdata(cdata);
+  }
+  React.useEffect(() => {
+      //console.log(pdata);
+  }, [pdata])
 
   return (
     <div className="App">
       <Navbar/>
-      <PlayerSelector/>
+      <PlayerSelector p_selected={ctp}/>
       <div className='row'>
-        {/* <PlayerSelector p_selected={ctp}/> */}
-        {/* <PlayerStats player={pdata}/> */}
-        {/* <MyTeamList/> */}
+        <PlayerStats player={pdata}/>
+        <MyTeamList/>
       </div>
     </div>
   );
