@@ -25,8 +25,16 @@ app.use("/update", updateR);
 const searchR = require("./routes/search");
 app.use("/search", searchR);
 
-//Client API router
-const apiR = require("./routes/apiroute");
-app.use("/api", apiR);
+//Add Player router
+const addplayerR = require("./routes/addplayer");
+app.use("/addplayer", addplayerR);
+
+//Login router
+const loginR = require("./routes/login");
+app.use("/login", loginR);
+
+// Register router
+const registerR = require("./routes/register");
+app.use("/register", registerR);
 
 app.listen(8080, console.log("Listening"));
