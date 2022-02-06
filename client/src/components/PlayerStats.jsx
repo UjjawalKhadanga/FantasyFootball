@@ -12,7 +12,7 @@ export default function PlayerStats({player}) {
         <img src={player.photo} alt="" height={250} width={200} />
         <div>
           <div className='row'>
-            <h1 className='col-2 badge bg-success ml-5 mr-5 mt-2'>£{player.details.now_cost/10}</h1>
+            <h1 className='col-2 badge bg-success ml-5 mr-5 mt-2'>£{player.details.now_cost}</h1>
             <h2 className='col text-center'>{player.details.first_name}&nbsp;{player.details.second_name}</h2>
             <h6 className='col-2'>{player.team}</h6>
           </div>
