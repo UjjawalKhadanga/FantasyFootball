@@ -1,0 +1,81 @@
+.field-area{
+    position: relative;
+}
+.field{
+    position: relative;
+}
+.pl1{
+    position: absolute;
+    left: 270px;
+    top: 80px;
+}
+.pl2{
+    position: absolute;
+    left: 80px;
+    top: 100px;
+}
+.pl3{
+    position: absolute;
+    left: 460px;
+    top: 100px;
+}
+.pl4{
+    position: absolute;
+    left: 270px;
+    top: 200px;
+}
+.pl5{
+    position: absolute;
+    left: 160px;
+    top: 240px;
+}
+.pl6{
+    position: absolute;
+    left: 380px;
+    top: 240px;
+}
+.pl7{
+    position: absolute;
+    left: 80px;
+    top: 350px;
+}
+.pl8{
+    position: absolute;
+    left: 460px;
+    top: 350px;
+}
+.pl9{
+    position: absolute;
+    left: 190px;
+    top: 370px;
+}
+.pl10{
+    position: absolute;
+    left: 350px;
+    top: 370px;
+}
+.pl11{
+    position: absolute;
+    left: 270px;
+    top: 460px;
+}
+.pl12{
+    position: absolute;
+    left: 640px;
+    top: 80px;
+}
+.pl13{
+    position: absolute;
+    left: 640px;
+    top: 190px;
+}
+.pl14{
+    position: absolute;
+    left: 640px;
+    top: 300px;
+}
+.pl15{
+    position: absolute;
+    left: 640px;
+    top: 410px;
+}
