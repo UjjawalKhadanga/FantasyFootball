@@ -20,7 +20,7 @@ export default function Navbar(props) {
         </button>
         <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
-            <li className="nav-item" onClick={() => {props.mtv(true)}}>
+            <li className="nav-item" onClick={() => {if(props.teamsize==15){props.mtv(true)} else{alert("Please select total of 15 players")}}}>
               <a className="nav-link text-light active" aria-current="page" href="#">
                 My Team
               </a>
