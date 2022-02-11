@@ -1,0 +1,110 @@
+.field-area{
+    position: relative;
+}
+.field{
+    position: relative;
+}
+.pl1{
+    position: absolute;
+    left: 270px;
+    top: 80px;
+    cursor: pointer;
+    background: none;
+}
+.pl2{
+    position: absolute;
+    left: 80px;
+    top: 100px;
+    cursor: pointer;
+    background: none;
+}
+.pl3{
+    position: absolute;
+    left: 460px;
+    top: 100px;
+    cursor: pointer;
+    background: none;
+}
+.pl4{
+    position: absolute;
+    left: 270px;
+    top: 200px;
+    cursor: pointer;
+    background: none;
+}
+.pl5{
+    position: absolute;
+    left: 160px;
+    top: 240px;
+    cursor: pointer;
+    background: none;
+}
+.pl6{
+    position: absolute;
+    left: 380px;
+    top: 240px;
+    cursor: pointer;
+    background: none;
+}
+.pl7{
+    position: absolute;
+    left: 80px;
+    top: 350px;
+    cursor: pointer;
+    background: none;
+}
+.pl8{
+    position: absolute;
+    left: 460px;
+    top: 350px;
+    cursor: pointer;
+    background: none;
+}
+.pl9{
+    position: absolute;
+    left: 190px;
+    top: 370px;
+    cursor: pointer;
+    background: none;
+}
+.pl10{
+    position: absolute;
+    left: 350px;
+    top: 370px;
+    cursor: pointer;
+    background: none;
+}
+.pl11{
+    position: absolute;
+    left: 270px;
+    top: 460px;
+    cursor: pointer;
+    background: none;
+}
+.pl12{
+    position: absolute;
+    left: 640px;
+    top: 80px;
+    cursor: pointer;
+    background: none;
+}
+.pl13{
+    position: absolute;
+    left: 640px;
+    top: 190px;
+    cursor: pointer;
+    background: none;
+}
+.pl14{
+    position: absolute;
+    left: 640px;
+    top: 300px;
+    cursor: pointer;
+    background: none;
+}
+.pl15{
+    position: absolute;
+    left: 640px;
+    top: 410px;cursor: pointer;
+    background: none;
+}

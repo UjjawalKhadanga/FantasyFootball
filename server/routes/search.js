@@ -30,8 +30,9 @@ router.post('/', (req,res) => {
 		if(
 			(data.elements[i].first_name.toLowerCase() == playerName.toLowerCase() ||
 			data.elements[i].second_name.toLowerCase() == playerName.toLowerCase() ||
-			data.elements[i].web_name.toLowerCase() == playerName.toLowerCase()) &&
-			positions[data.elements[i].element_type-1]==playerPos &&
+			data.elements[i].web_name.toLowerCase() == playerName.toLowerCase() ||
+			playerName == "") &&
+			(positions[data.elements[i].element_type-1]==playerPos || playerPos=="ALL") &&
 			data.elements[i].now_cost >= minCost &&
 			data.elements[i].now_cost <= maxCost
 		){
@@ -40,7 +41,7 @@ router.post('/', (req,res) => {
 	}
 
 	// sending the results in response
-	console.log(results)
+	// console.log(results)
 	return res.send({
 		input: {
 			minCost,

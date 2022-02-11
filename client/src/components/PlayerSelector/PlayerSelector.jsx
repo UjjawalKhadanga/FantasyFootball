@@ -9,7 +9,7 @@ export default function PlayerSelector(props) {
   const [searchResults, setSearchResults] = useState({"result":[]});
   // States
   const [playerName, setPlayerName] = useState("");
-  const [playerPos, setPlayerPos] = useState("FWD");
+  const [playerPos, setPlayerPos] = useState("ALL");
   const [minCost, set_minCost] = useState(0);
   const [maxCost, set_maxCost] = useState(200);
 
@@ -52,9 +52,10 @@ export default function PlayerSelector(props) {
               Position
             </label>
             <select value={playerPos} onChange={handlePlayerPos} id="player-position" className="form-select">
+              <option>ALL</option>
               <option>FWD</option>
               <option>MID</option>
-              <option>DFR</option>
+              <option>DEF</option>
               <option>GKP</option>
             </select>
           </div>
