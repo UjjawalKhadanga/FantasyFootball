@@ -26,45 +26,55 @@ function App() {
     console.log("Y");
   }, [myteam_view])  
 
-  // var myt = [270, 275, 273, 555, 510, 282, 272, 277, 281, 485, 579, 269, 258, 288, 280];
   //update myteam list
-  const [myteam, setMyteam] = React.useState([]);
-  const myteam_fn = (cdata) => {
-    for(var i=0; i<myteam.length; i++)
-    {
-      if(myteam[i].details.id == cdata.details.id) return;
-    }
-    var tmpteam = [...myteam];
-    tmpteam.push(cdata);
-    setMyteam(tmpteam);
-
+  const default_team = {
+    gkp: [],
+    def: [],
+    mid: [],
+    fwd: [],
+    all: []
   }
-  React.useEffect(() => {
-    console.log("X");
-  }, myteam)
+  const [myteam, setMyteam] = React.useState(default_team);
+  const myteam_fn = (cdata) => {
+    for(var i=0; i<myteam.all.length; i++)
+    {
+      if(myteam.all[i].details.id == cdata.details.id || myteam.all.length == 15) return;
+    }
+    var tmpteam = {...myteam};
+    if(cdata.pos == "GKP"){
+      tmpteam.gkp.push(cdata);
+    }else if(cdata.pos == "DEF"){
+      tmpteam.def.push(cdata);
+    }else if(cdata.pos == "MID"){
+      tmpteam.mid.push(cdata);
+    }else if(cdata.pos == "FWD"){
+      tmpteam.fwd.push(cdata);
+    }
+    tmpteam.all = tmpteam.gkp.concat(tmpteam.def.concat(tmpteam.mid.concat(tmpteam.fwd)));
+    setMyteam(tmpteam);
+  }
 
   //swap function
   var p_to_swap=-1;
   const swap_fn = (x) => {
     if(p_to_swap == -1){p_to_swap = x;}
     else{
-      //if(myteam[x].pos != myteam[p_to_swap].pos) {alert("Please select players from same position!");return;}
-      var tmpteam = [...myteam];
-      var tmp = tmpteam[x];
-      tmpteam[x] = tmpteam[p_to_swap];
-      tmpteam[p_to_swap] = tmp;
+      var tmpteam = {...myteam};
+      var tmp = tmpteam.all[x];
+      tmpteam.all[x] = tmpteam.all[p_to_swap];
+      tmpteam.all[p_to_swap] = tmp;
       p_to_swap = -1;
       setMyteam(tmpteam);
     }
   }
   React.useEffect(() => {
-    console.log("z");
-  }, myteam)
+    console.log(myteam.all);
+  }, [myteam])
 
   if(myteam_view){
     return (
       <div className="App">
-        <Navbar mtv={myteam_view_fn} teamsize={myteam.length}/>
+        <Navbar mtv={myteam_view_fn} teamsize={myteam.all.length}/>
         <div className='row'>
           <MyteamDisplay myteam={myteam} swap_fn={swap_fn}/>
           <MyTeamList myteam_fn={myteam_fn} myteam={myteam}/>
@@ -75,7 +85,7 @@ function App() {
   else{
     return (
       <div className="App">
-        <Navbar mtv={myteam_view_fn} teamsize={myteam.length}/>
+        <Navbar mtv={myteam_view_fn} teamsize={myteam.all.length}/>
         <div className='row'>
           <PlayerSelector p_selected={ctp}/>
           <PlayerStats player={pdata} myteam={myteam_fn}/>
