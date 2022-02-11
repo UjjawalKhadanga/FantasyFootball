@@ -8,7 +8,12 @@ const userSchema = new mongoose.Schema({
     name: String,
     email: String,
     password: String,
-    players: [Number]
+    players: {
+        GKP: [Number],
+        DEF: [Number],
+        MID: [Number],
+        FWD: [Number]
+    }
 });
 
 const User = mongoose.model("User", userSchema);

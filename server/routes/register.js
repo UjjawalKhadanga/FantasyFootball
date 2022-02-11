@@ -8,7 +8,7 @@ router.post("/", async (req, res) => {
     const name = req.body.name;
     const email = req.body.email;
     const password = req.body.password;
-    const players = [];
+    const players = {GKP: [], DEF: [], MID: [], FWD: []};
 
     const user = new User({
         name,

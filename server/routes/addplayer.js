@@ -5,28 +5,26 @@ const User = require("../models/User");
 
 mongoose.connect(process.env.MONGODB_URI);
 
-// request body of json form => { playerId: 1, userId: 1}
+// request body of json form => { userId,team }
 router.post('/', async (req,res) => {
-    const playerId = req.body.playerId;
+    const team= req.body.team;
     const userId = req.body.userId;
 
-    // query the request
     const user = await User.findById(userId);
     if(!user){
-        return res.send({
-            error: "User not found"
-        })
+        return res.send({error: "User not found"})
     }
-    if(user.players.includes(playerId)){
-        return res.send({
-            error: "Player already in user"
-        })
-    }
-    user.players.push(playerId);
+
+    const pos=['MID','GKP','FWD','DEF'];
+
+    pos.forEach(p => {
+        team[p].forEach(player => {
+            console.log(player.details.code);
+            user.players[p].push(player.details.code);
+        });
+    });
     await user.save();
-    return res.send({
-        success: "Player added in user's list"
-    })
+    return res.send({success: "Players added in user's list"})
 })
 
 module.exports = router;

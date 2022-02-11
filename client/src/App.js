@@ -1,30 +1,22 @@
 import './App.css';
-import Navbar from './components/Navbar/Navbar';
-import PlayerSelector from './components/PlayerSelector/PlayerSelector';
-import PlayerStats from './components/PlayerStats';
-import MyTeamList from './components/MyTeamList';
 import React from 'react';
+import Navbar from './components/Navbar/Navbar';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import LoginReg from './pages/LoginReg';
+import Home from './pages/Home';
+import SelectYourTeam from './pages/SelectYourTeam';
 
 function App() {
-  
-  //player selected from list
-  const [pdata, setPdata] = React.useState("");
-  const ctp = (cdata) => {
-      setPdata(cdata);
-  }
-  React.useEffect(() => {
-      //console.log(pdata);
-  }, [pdata])
 
   return (
-    <div className="App">
-      <Navbar/>
-      <PlayerSelector p_selected={ctp}/>
-      <div className='row'>
-        <PlayerStats player={pdata}/>
-        <MyTeamList/>
-      </div>
-    </div>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+            <Route path="/selectyourteam" element={<SelectYourTeam/>}/>
+            <Route path="/login" element={<LoginReg/>}/>
+            <Route path="/" element={<Home/>}/>
+        </Routes>
+      </BrowserRouter>
   );
 }
 
