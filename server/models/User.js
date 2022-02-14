@@ -9,10 +9,10 @@ const userSchema = new mongoose.Schema({
     email: String,
     password: String,
     players: {
-        GKP: [Number],
-        DEF: [Number],
-        MID: [Number],
-        FWD: [Number]
+        GKP: [Object],
+        DEF: [Object],
+        MID: [Object],
+        FWD: [Object]
     }
 });
 

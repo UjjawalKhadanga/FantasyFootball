@@ -5,6 +5,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import LoginReg from './pages/LoginReg';
 import Home from './pages/Home';
 import SelectYourTeam from './pages/SelectYourTeam';
+import MyTeam from './pages/MyTeam';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
             <Route path="/selectyourteam" element={<SelectYourTeam/>}/>
             <Route path="/login" element={<LoginReg/>}/>
             <Route path="/" element={<Home/>}/>
+            <Route path="/myteam" element={<MyTeam/>}/>
         </Routes>
       </BrowserRouter>
   );

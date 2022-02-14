@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 function PlayerMeta(props) {
@@ -22,7 +23,10 @@ function PlayerMeta(props) {
 export default function MyTeamList(props) {
 
   const saveMyTeam = async () => {
-    return ;
+    const res=axios.post('http://localhost:8080/addplayer',{
+      team: props.teamData,
+      userId: '620a1f57eb0dfaa9fc3e260d'//test value for now
+    })
   }
   
   return (
@@ -55,9 +59,13 @@ export default function MyTeamList(props) {
           </div>
         </div>
       </div>
-      <div className="row m-3">
-        <button className="btn btn-primary btn-lg btn-block" onClick={saveMyTeam}>Save</button>
-      </div>
+      {
+        // if location.pathname is /selectyourteam then show save button
+        useLocation().pathname === '/selectyourteam' &&
+        <div className="row m-3">
+          <button className="btn btn-primary btn-lg btn-block" onClick={saveMyTeam}>Save</button>
+        </div>
+      }
     </>
 
   );

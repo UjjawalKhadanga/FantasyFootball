@@ -5,7 +5,10 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const express = require("express");
 const app = express();
+require('dotenv').config();
 
+const mongoose = require("mongoose");
+mongoose.connect(process.env.MONGODB_URI);
 
 
 app.use(cors());
@@ -28,6 +31,10 @@ app.use("/search", searchR);
 //Add Player router
 const addplayerR = require("./routes/addplayer");
 app.use("/addplayer", addplayerR);
+
+//Get Player router
+const getplayerR = require("./routes/getplayers");
+app.use("/getplayers", getplayerR);
 
 //Login router
 const loginR = require("./routes/login");

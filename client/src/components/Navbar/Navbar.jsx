@@ -33,7 +33,12 @@ export default function Navbar() {
             </li>
             <li className="nav-item">
               <Link className="nav-link text-light active" aria-current="page" to="/selectyourteam">
-                Select your team
+                SelectYourTeam
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link text-light active" aria-current="page" to="/myteam">
+                MyTeam
               </Link>
             </li>
           </ul>

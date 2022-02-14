@@ -1,9 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
 const User = require("../models/User");
-
-mongoose.connect(process.env.MONGODB_URI);
 
 // request body of json form => { userId,team }
 router.post('/', async (req,res) => {
@@ -19,8 +16,16 @@ router.post('/', async (req,res) => {
 
     pos.forEach(p => {
         team[p].forEach(player => {
-            console.log(player.details.code);
-            user.players[p].push(player.details.code);
+            // if player is not in the team, add it
+            playerpresent=false;
+            for(let i = 0; i < user.players[p].length; i++){
+                if(user.players[p][i].details.code==player.details.code){
+                    playerpresent=true;
+                }
+            }
+            if(!playerpresent){
+                user.players[p].push(player);
+            }
         });
     });
     await user.save();

@@ -2,21 +2,27 @@ import PlayerSelector from '../components/PlayerSelector/PlayerSelector';
 import PlayerStats from '../components/PlayerStats';
 import MyTeamList from '../components/MyTeamList';
 import React,{useEffect, useState} from 'react';
+import axios from 'axios';
 
 function SelectYourTeam() {
   const [playerData, setPlayerData] = useState("");
 
   const [teamData, setTeamData] = useState({"GKP": [], "DEF": [], "MID": [], "FWD": []});
-  useEffect(() => {console.log(teamData)},[teamData])
+  useEffect(async () => {
+    const userId='620a1f57eb0dfaa9fc3e260d'//test value for now
+    const DBteamData = await axios.get('http://localhost:8080/getplayers/'+userId);
+    setTeamData(DBteamData.data)
+  },[])
 
   const addPlayer = (data) => {
-    if(!teamData[data.pos].includes(data)){
-      let newTeamData = {...teamData};
-      newTeamData[data.pos].push(data);
-      setTeamData(newTeamData);
-      return;
+    for(let i = 0; i < teamData[data.pos].length; i++){
+      if(teamData[data.pos][i].details==data.details){
+        return alert(`${data.details.first_name} ${data.details.second_name} is already on your team`);
+      }
     }
-    return alert(`${data.details.first_name} ${data.details.second_name} is already on your team`);
+    let newTeamData = {...teamData};
+    newTeamData[data.pos].push(data);
+    setTeamData(newTeamData);  
   }
 
 
