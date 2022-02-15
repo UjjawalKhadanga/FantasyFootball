@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Navbar() {
+export default function Navbar(props) {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-dark">
       <div className="container-fluid">
@@ -20,9 +20,9 @@ export default function Navbar() {
         </button>
         <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
-            <li className="nav-item">
+            <li className="nav-item" onClick={() => {if(props.teamsize==15){props.mtv(true)} else{alert("Please select total of 15 players")}}}>
               <a className="nav-link text-light active" aria-current="page" href="#">
-                Home
+                My Team
               </a>
             </li>
             <li className="nav-item">
@@ -30,7 +30,7 @@ export default function Navbar() {
                 Login/Register
               </a>
             </li>
-            <li className="nav-item">
+            <li className="nav-item" onClick={() => {props.mtv(false)}}>
               <a className="nav-link text-light active" aria-current="page" href="#">
                 Select your team
               </a>
