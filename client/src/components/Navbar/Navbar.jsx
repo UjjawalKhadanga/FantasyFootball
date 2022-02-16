@@ -1,12 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-dark">
       <div className="container-fluid">
-        <a className="navbar-brand text-light" href="#">
+        <Link className="navbar-brand text-light" to="/">
           Fantasy Football
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -21,24 +22,24 @@ export default function Navbar() {
         <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link text-light active" aria-current="page" href="#">
+              <Link className="nav-link text-light active" aria-current="page" to="/">
                 Home
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link text-light active" aria-current="page" href="#">
+              <Link className="nav-link text-light active" aria-current="page" to="/login">
                 Login/Register
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link text-light active" aria-current="page" href="#">
-                Select your team
-              </a>
+              <Link className="nav-link text-light active" aria-current="page" to="/selectyourteam">
+                SelectYourTeam
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link text-light active" aria-current="page" href="#">
-                Logout
-              </a>
+              <Link className="nav-link text-light active" aria-current="page" to="/myteam">
+                MyTeam
+              </Link>
             </li>
           </ul>
         </div>
