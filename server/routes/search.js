@@ -26,17 +26,33 @@ router.post('/', (req,res) => {
 	const positions = ["GKP", "DEF", "MID", "FWD"];
 	let results=[];
 	// filtering database
-	for(let i=0;i<data.elements.length;i++){
-		if(
-			(data.elements[i].first_name.toLowerCase() == playerName.toLowerCase() ||
-			data.elements[i].second_name.toLowerCase() == playerName.toLowerCase() ||
-			data.elements[i].web_name.toLowerCase() == playerName.toLowerCase() ||
-			playerName == "") &&
-			(positions[data.elements[i].element_type-1]==playerPos || playerPos=="ALL") &&
-			data.elements[i].now_cost >= minCost &&
-			data.elements[i].now_cost <= maxCost
-		){
-			results.push(data.elements[i]);
+
+	if(playerPos=="ALL"){
+		for(let i=0; i<data.elements.length; i++){
+			if(
+				(data.elements[i].first_name.toLowerCase() == playerName.toLowerCase() ||
+			  	data.elements[i].second_name.toLowerCase() == playerName.toLowerCase() ||
+			  	data.elements[i].web_name.toLowerCase() == playerName.toLowerCase()) &&
+				data.elements[i].now_cost>=minCost &&
+			  	data.elements[i].now_cost<=maxCost
+			){
+				results.push(data.elements[i]);
+			}
+		}
+	}
+	else{
+		for(let i=0;i<data.elements.length;i++){
+			if(
+				(data.elements[i].first_name.toLowerCase() == playerName.toLowerCase() ||
+				data.elements[i].second_name.toLowerCase() == playerName.toLowerCase() ||
+				data.elements[i].web_name.toLowerCase() == playerName.toLowerCase()) &&
+				positions[data.elements[i].element_type-1]==playerPos &&
+				data.elements[i].now_cost >= minCost &&
+				data.elements[i].now_cost <= maxCost
+			){
+				results.push(data.elements[i]);
+			}
+
 		}
 	}
 

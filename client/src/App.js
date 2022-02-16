@@ -1,4 +1,5 @@
 import './App.css';
+
 // import Navbar from './components/Navbar/Navbar';
 // import PlayerSelector from './components/PlayerSelector/PlayerSelector';
 // import PlayerStats from './components/PlayerStats';
@@ -6,7 +7,7 @@ import './App.css';
 // import MyteamDisplay from './components/MyteamDisplay';
 // import React from 'react';
 
-function App() {
+
   
   // //player selected from list
   // const [pdata, setPdata] = React.useState("");
@@ -16,6 +17,17 @@ function App() {
   // React.useEffect(() => {
   //     //console.log(pdata);
   // }, [pdata])
+
+import React from 'react';
+import Navbar from './components/Navbar/Navbar';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import LoginReg from './pages/LoginReg';
+import Home from './pages/Home';
+import SelectYourTeam from './pages/SelectYourTeam';
+import MyTeam from './pages/MyTeam';
+
+function App() {
+
 
   // //load MY Team page from navbar
   // const [myteam_view, setMyteam_view] = React.useState(false);
@@ -95,8 +107,19 @@ function App() {
   //   );
   // }
   return (
-    <div></div>
-  )
+
+
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+            <Route path="/selectyourteam" element={<SelectYourTeam/>}/>
+            <Route path="/login" element={<LoginReg/>}/>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/myteam" element={<MyTeam/>}/>
+        </Routes>
+      </BrowserRouter>
+  );
+
 }
 
 export default App;
