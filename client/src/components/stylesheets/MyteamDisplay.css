@@ -4,107 +4,146 @@
 .field{
     position: relative;
 }
-.pl1{
+.plFWD0{
     position: absolute;
     left: 270px;
     top: 80px;
     cursor: pointer;
     background: none;
+    
 }
-.pl2{
+.plMID4{
     position: absolute;
     left: 80px;
     top: 100px;
     cursor: pointer;
     background: none;
+    
 }
-.pl3{
+.plMID3{
     position: absolute;
     left: 460px;
     top: 100px;
     cursor: pointer;
     background: none;
+    
 }
-.pl4{
+.plMID2{
     position: absolute;
     left: 270px;
     top: 200px;
     cursor: pointer;
     background: none;
+    
 }
-.pl5{
+.plMID1{
     position: absolute;
     left: 160px;
     top: 240px;
     cursor: pointer;
     background: none;
+    
 }
-.pl6{
+.plMID0{
     position: absolute;
     left: 380px;
     top: 240px;
     cursor: pointer;
     background: none;
+    
 }
-.pl7{
+.plDEF3{
     position: absolute;
     left: 80px;
     top: 350px;
     cursor: pointer;
     background: none;
+    
 }
-.pl8{
+.plDEF2{
     position: absolute;
     left: 460px;
     top: 350px;
     cursor: pointer;
     background: none;
+    
 }
-.pl9{
+.plDEF1{
     position: absolute;
     left: 190px;
     top: 370px;
     cursor: pointer;
     background: none;
+    
 }
-.pl10{
+.plDEF0{
     position: absolute;
     left: 350px;
     top: 370px;
     cursor: pointer;
     background: none;
+    
 }
-.pl11{
+.plGKP0{
     position: absolute;
     left: 270px;
     top: 460px;
     cursor: pointer;
     background: none;
+    
 }
-.pl12{
+.plFWD1{
     position: absolute;
     left: 640px;
-    top: 80px;
+    top: 130px;
     cursor: pointer;
     background: none;
+    
 }
-.pl13{
+.plMID5{
     position: absolute;
     left: 640px;
-    top: 190px;
+    top: 240px;
     cursor: pointer;
     background: none;
+    
 }
-.pl14{
+.plDEF4{
     position: absolute;
     left: 640px;
-    top: 300px;
+    top: 350px;
     cursor: pointer;
     background: none;
+    
 }
-.pl15{
+.plGKP1{
     position: absolute;
     left: 640px;
-    top: 410px;cursor: pointer;
+    top: 460px;cursor: pointer;
     background: none;
+    
+}
+.c_btn{
+    position: absolute;
+    left: 640px;
+    top: 30px;
+    width: 150px;
+    font-size: 15px;
+}
+.vc_btn{
+    position: absolute;
+    left: 640px;
+    top: 70px;
+    width: 165px;
+    font-size: 15px;
+}
+.cap{
+    position: absolute;
+    left:320px;
+    top:465px;
+    background-color: rgb(255, 217, 5);
+    border: solid black;
+    border-radius: 15px;
+    text-align: center;
+    width: 20px;
 }

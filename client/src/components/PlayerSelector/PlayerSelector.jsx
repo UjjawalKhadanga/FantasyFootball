@@ -54,7 +54,7 @@ export default function PlayerSelector(props) {
               <option>ALL</option>
               <option>FWD</option>
               <option>MID</option>
-              <option>DFR</option>
+              <option>DEF</option>
               <option>GKP</option>
             </select>
           </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar(props) {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-dark">
       <div className="container-fluid">
@@ -21,20 +21,24 @@ export default function Navbar() {
         </button>
         <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
+
             <li className="nav-item">
               <Link className="nav-link text-light active" aria-current="page" to="/">
                 Home
               </Link>
+
             </li>
             <li className="nav-item">
               <Link className="nav-link text-light active" aria-current="page" to="/login">
                 Login/Register
               </Link>
             </li>
+
             <li className="nav-item">
               <Link className="nav-link text-light active" aria-current="page" to="/selectyourteam">
                 SelectYourTeam
               </Link>
+
             </li>
             <li className="nav-item">
               <Link className="nav-link text-light active" aria-current="page" to="/myteam">

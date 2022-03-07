@@ -26,6 +26,7 @@ router.post('/', (req,res) => {
 	const positions = ["GKP", "DEF", "MID", "FWD"];
 	let results=[];
 	// filtering database
+
 	if(playerPos=="ALL"){
 		for(let i=0; i<data.elements.length; i++){
 			if(
@@ -51,11 +52,12 @@ router.post('/', (req,res) => {
 			){
 				results.push(data.elements[i]);
 			}
+
 		}
 	}
 
 	// sending the results in response
-	console.log(results)
+	// console.log(results)
 	return res.send({
 		input: {
 			minCost,
