@@ -5,7 +5,9 @@ function PlayerMeta(props) {
 			details: props.details,
 			team: props.team,
 			pos: props.pos,
-			photo: props.photo
+			photo: props.photo,
+      captain: false,
+      v_captain: false
 	}
 	return (
 	<li className="list-group-item " style={{fontSize: 15}}>

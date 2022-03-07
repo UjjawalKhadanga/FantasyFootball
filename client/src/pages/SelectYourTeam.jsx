@@ -9,7 +9,7 @@ function SelectYourTeam() {
 
   const [teamData, setTeamData] = useState({"GKP": [], "DEF": [], "MID": [], "FWD": []});
   useEffect(async () => {
-    const userId='620a1f57eb0dfaa9fc3e260d'//test value for now
+    const userId='62110b17e33e33dc305f17be'//test value for now
     const DBteamData = await axios.get('http://localhost:8080/getplayers/'+userId);
     setTeamData(DBteamData.data)
   },[])
@@ -22,9 +22,25 @@ function SelectYourTeam() {
     }
     let newTeamData = {...teamData};
     newTeamData[data.pos].push(data);
-    setTeamData(newTeamData);  
+    const res=axios.post('http://localhost:8080/addplayer',{
+      team: newTeamData,
+      userId: '62110b17e33e33dc305f17be'//test value for now
+    })
+    setTeamData(newTeamData);
   }
 
+  const delPlayer = async (newTeamData) => {
+    const res=axios.post('http://localhost:8080/addplayer/updateteam',{
+      team: newTeamData,
+      userId: '62110b17e33e33dc305f17be'//test value for now
+    })
+    setTeamData(newTeamData);
+  }
+
+  // const saveMyTeam = async (newTeamData) => {
+
+    
+  // }
 
   return (
     <div className="row">
@@ -35,7 +51,7 @@ function SelectYourTeam() {
         <PlayerStats player={playerData} addPlayer={(data)=>{addPlayer(data)}}/>
       </div>
       <div className="col">
-        <MyTeamList teamData={teamData}/>
+        <MyTeamList teamData={teamData} delPlayer={delPlayer}/>
       </div>
     </div>
   );

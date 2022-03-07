@@ -6,15 +6,23 @@ import MyTeamList from '../components/MyTeamList'
 function MyTeam() {
   const   [teamData, setTeamData] = useState({"GKP": [], "DEF": [], "MID": [], "FWD": []});
   useEffect(async () => {
-    const userId='620a1f57eb0dfaa9fc3e260d'//test value for now
+    const userId='62110b17e33e33dc305f17be'//test value for now
     const DBteamData = await axios.get('http://localhost:8080/getplayers/'+userId);
     setTeamData(DBteamData.data)
   },[])
 
+  const updateTeam = async (newData) => {
+    const res=axios.post('http://localhost:8080/addplayer/updateteam',{
+      team: newData,
+      userId: '62110b17e33e33dc305f17be'//test value for now
+    })
+    setTeamData(newData);
+  }
+
   return (
     <div className='row'>
         <div className="col-8">
-            <MyteamDisplay />
+            <MyteamDisplay teamData={teamData} updateTeam={updateTeam}/>
         </div>
         <div className="col-4">
             <MyTeamList teamData={teamData}/>
