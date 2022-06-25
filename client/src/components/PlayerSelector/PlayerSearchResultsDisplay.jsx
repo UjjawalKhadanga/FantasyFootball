@@ -5,9 +5,10 @@ function PlayerMeta(props) {
 			details: props.details,
 			team: props.team,
 			pos: props.pos,
-			photo: props.photo
+			photo: props.photo,
+      captain: false,
+      v_captain: false
 	}
-  console.log(playerr_details)
 	return (
 	<li className="list-group-item " style={{fontSize: 15}}>
 		<div className="player-meta d-flex" onClick={() => {props.p_selected(playerr_details)}} style={{cursor: "pointer"}}>
@@ -39,26 +40,20 @@ export default function PlayerSearchResultsDisplay(props) {
   const findteam = (code) => {
       return  props.searchResults.teams[code-1];
   }
-  console.log(props.searchResults)
 
   const pos = ["GKP", "DEF", "MID", "FWD"];
 
   if(props.searchResults.result.length === 0){
     return (
-      <div className="m-3 border border-2 border-dark p-0 col-3 d-flex flex-column justify-content-center align-items-center">
-        <div className="row">
-          <div className="col-12">
-            <div className='d-flex justify-content-center'>No Players Found</div>
-          </div>
-        </div>
+      <div className="m-3 border border-2 border-dark">
+          <div className='d-flex justify-content-center'>No Players Found</div>
       </div>
     );
   }
   return (
-    <div className="m-3 border border-2 border-dark p-0 col-3 d-flex flex-column justify-content-center align-items-center">
+    <div className="m-3 border border-2 border-dark">
       <ul class="list-group w-100">
         {props.searchResults.result.map((player) => {
-          console.log(player)
           return (
             <PlayerMeta
               key={player.id}

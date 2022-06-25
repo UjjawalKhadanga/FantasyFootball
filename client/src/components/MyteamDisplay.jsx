@@ -1,99 +1,182 @@
-import React from 'react';
+import React,{Component} from 'react';
 import './stylesheets/MyteamDisplay.css'
+import axios from 'axios';
 
 export default function MyteamDisplay(props) {
     const imgsrc = "https://thumbs.dreamstime.com/b/soccer-field-football-stadium-vertical-background-green-grass-painted-line-sport-play-overhead-view-pitch-grou-ground-211653743.jpg";
-    const pimg = "https://resources.premierleague.com/premierleague/photos/players/110x140/p17761.png";
 
-    var selected_class = "", p_to_swap = -1;
-
-    const player_onclick = (x, p_class) => {
-        if(p_to_swap == -1){
-            document.getElementsByClassName(p_class)[0].style.background = "yellow";
-            selected_class = p_class;
-            p_to_swap = x;
-            props.swap_fn(x);
-        }else{
-            if(props.myteam.all[x].pos != props.myteam.all[p_to_swap].pos) {alert("Please select players from same position!");return;}
-            document.getElementsByClassName(selected_class)[0].style.background = "none";
-            selected_class = "";
-            p_to_swap = -1;
-            props.swap_fn(x);
-        }
-        
-       
+    //highlight captain
+    const is_captain = () => {
+        const poss = ['GKP', 'DEF', 'MID', 'FWD'];
+        poss.forEach(pos => {props.teamData[pos].forEach((player, id) => {
+            if(player.captain){
+                document.getElementsByClassName('pl'+pos+id)[0].style.background = 'black';
+            }else if(player.v_captain){
+                document.getElementsByClassName('pl'+pos+id)[0].style.background = 'grey';
+            }else{
+                document.getElementsByClassName('pl'+pos+id)[0].style.background = 'none';
+            }
+        })});
     }
+    
+    //swap function
+    var p_to_swap = {idx:-1, pos: 1, class: "", cap: false};
+    var set_captain = false, set_v_captain = false;
+    const player_onclick = (x, pos, p_class) => {
+        //set captain
+        if(set_captain){
+            if(props.teamData[p_class.substring(2, 5)][parseInt(p_class.substring(5, p_class.length))].v_captain == true){
+                alert(props.teamData[p_class.substring(2, 5)][parseInt(p_class.substring(5, p_class.length))].details.web_name);
+                return;
+            }else{
+                var newData = {...props.teamData};
+                const poss = ['GKP', 'DEF', 'MID', 'FWD'];
+                poss.forEach(pos => {newData[pos].forEach((player, id) => {
+                    newData[pos][id].captain = false;
+                })});
+                newData[p_class.substring(2, 5)][parseInt(p_class.substring(5, p_class.length))].captain = true;
+                props.updateTeam(newData);
+            }
+            is_captain();
+            set_captain = false;
+            return;
+        }else if(set_v_captain){
+            if(props.teamData[p_class.substring(2, 5)][parseInt(p_class.substring(5, p_class.length))].captain == true){
+                alert(props.teamData[p_class.substring(2, 5)][parseInt(p_class.substring(5, p_class.length))].details.web_name)
+                return;
+            }else{
+                var newData = {...props.teamData};
+                const poss = ['GKP', 'DEF', 'MID', 'FWD'];
+                poss.forEach(pos => {newData[pos].forEach((player, id) => {
+                    newData[pos][id].v_captain = false;
+                })});
+                newData[p_class.substring(2, 5)][parseInt(p_class.substring(5, p_class.length))].v_captain = true;
+                props.updateTeam(newData);
+            }
+            is_captain();
+            set_v_captain = false;
+            return;
+        }
+        //select player1
+        if(p_to_swap.idx == -1){
+            document.getElementsByClassName(p_class)[0].style.background = "yellow";
+            p_to_swap.idx = x;
+						p_to_swap.class= p_class;
+						p_to_swap.pos = pos;
+        }
+        //select player2 and swap
+        else{
+            if(pos != p_to_swap.pos) {alert("Please select players from same position!");return;}
+            document.getElementsByClassName(p_to_swap.class)[0].style.background = "none";
+            is_captain();
+						var newData = {...props.teamData};
+						if(pos == 1){
+							var temp_p = newData.GKP[x];
+							newData.GKP[x] = newData.GKP[p_to_swap.idx];
+							newData.GKP[p_to_swap.idx] = temp_p;
+						}else if(pos == 2){
+							var temp_p = newData.DEF[x];
+							newData.DEF[x] = newData.DEF[p_to_swap.idx];
+							newData.DEF[p_to_swap.idx] = temp_p;
+						}else if(pos == 3){
+							var temp_p = newData.MID[x];
+							newData.MID[x] = newData.MID[p_to_swap.idx];
+							newData.MID[p_to_swap.idx] = temp_p;
+						}else if(pos == 4){
+							var temp_p = newData.FWD[x];
+							newData.FWD[x] = newData.FWD[p_to_swap.idx];
+							newData.FWD[p_to_swap.idx] = temp_p;
+						}
+            
+						props.updateTeam(newData);
+            p_to_swap.idx = -1;
+        }    
+    }
+    
+
+	//when empty array is recieved when loading page
+	if(props.teamData.DEF.length == 0){
+		console.log("MTD")
+		return (
+			<div>page did not load</div>
+		)
+	}
 
   return <div className='my-team-display col p-5 border border-black'>
       <div>
           My Team
       </div>
-      <div className='field-area'>
-          <img src={imgsrc} alt="" height={600} width={600} className='field'/>
+      <div className='field-area'  onLoad={is_captain}>
+          <img src={imgsrc} alt="" height={600} width={600} className='field' />
 
-          <div className='pl1' onClick={() => {player_onclick(13, 'pl1')}}>
-          <img src={props.myteam.all[13].photo} alt="" height={70} width={60}/>
+
+          <div className='plFWD0' onClick={() => {player_onclick(0, 4, 'plFWD0')}}>
+          <img src={props.teamData.FWD[0].photo} alt="" height={70} width={60}/>
           <p className='bg-info text-center'>0</p>
           </div>
-          <div className='pl2' onClick={() => {player_onclick(11, 'pl2')}}>
-          <img src={props.myteam.all[11].photo} alt="" height={70} width={60}/>
+          <div className='plMID4' onClick={() => {player_onclick(4, 3, 'plMID4')}}>
+          <img src={props.teamData.MID[4].photo} alt="" height={70} width={60}/>
           <p className='bg-info text-center'>0</p>
           </div>
-          <div className='pl3' onClick={() => {player_onclick(10, 'pl3')}}>
-          <img src={props.myteam.all[10].photo} alt="" height={70} width={60}/>
+          <div className='plMID3' onClick={() => {player_onclick(3, 3, 'plMID3')}}>
+          <img src={props.teamData.MID[3].photo} alt="" height={70} width={60}/>
           <p className='bg-info text-center'>0</p>
           </div>
-          <div className='pl4' onClick={() => {player_onclick(9, 'pl4')}}>
-          <img src={props.myteam.all[9].photo} alt="" height={70} width={60}/>
+          <div className='plMID2' onClick={() => {player_onclick(2, 3, 'plMID2')}}>
+          <img src={props.teamData.MID[2].photo} alt="" height={70} width={60}/>
           <p className='bg-info text-center'>0</p>
           </div>
-          <div className='pl5' onClick={() => {player_onclick(8, 'pl5')}}>
-          <img src={props.myteam.all[8].photo} alt="" height={70} width={60}/>
+          <div className='plMID1' onClick={() => {player_onclick(1, 3, 'plMID1')}}>
+          <img src={props.teamData.MID[1].photo} alt="" height={70} width={60}/>
           <p className='bg-info text-center'>0</p>
           </div>
-          <div className='pl6' onClick={() => {player_onclick(7, 'pl6')}}>
-          <img src={props.myteam.all[7].photo} alt="" height={70} width={60}/>
+          <div className='plMID0' onClick={() => {player_onclick(0, 3, 'plMID0')}}>
+          <img src={props.teamData.MID[0].photo} alt="" height={70} width={60}/>
           <p className='bg-info text-center'>0</p>
           </div>
-          <div className='pl7' onClick={() => {player_onclick(5, 'pl7')}}>
-          <img src={props.myteam.all[5].photo} alt="" height={70} width={60}/>
+          <div className='plDEF3' onClick={() => {player_onclick(3, 2, 'plDEF3')}}>
+          <img src={props.teamData.DEF[3].photo} alt="" height={70} width={60}/>
           <p className='bg-info text-center'>0</p>
           </div>
-          <div className='pl8' onClick={() => {player_onclick(4, 'pl8')}}>
-          <img src={props.myteam.all[4].photo} alt="" height={70} width={60}/>
+          <div className='plDEF2' onClick={() => {player_onclick(2, 2, 'plDEF2')}}>
+          <img src={props.teamData.DEF[2].photo} alt="" height={70} width={60}/>
           <p className='bg-info text-center'>0</p>
           </div>
-          <div className='pl9' onClick={() => {player_onclick(3, 'pl9')}}>
-          <img src={props.myteam.all[3].photo} alt="" height={70} width={60}/>
+          <div className='plDEF1' onClick={() => {player_onclick(1, 2, 'plDEF1')}}>
+          <img src={props.teamData.DEF[1].photo} alt="" height={70} width={60}/>
           <p className='bg-info text-center'>0</p>
           </div>
-          <div className='pl10' onClick={() => {player_onclick(2, 'pl10')}}>
-          <img src={props.myteam.all[2].photo} alt="" height={70} width={60}/>
+          <div className='plDEF0' onClick={() => {player_onclick(0, 2, 'plDEF0')}}>
+          <img src={props.teamData.DEF[0].photo} alt="" height={70} width={60}/>
           <p className='bg-info text-center'>0</p>
           </div>
-          <div className='pl11' onClick={() => {player_onclick(0, 'pl11')}}>
-          <img src={props.myteam.all[0].photo} alt="" height={70} width={60}/>
+          <div className='plGKP0' onClick={() => {player_onclick(0, 1, 'plGKP0')}}>
+          <img src={props.teamData.GKP[0].photo} alt="" height={70} width={60}/>
           <p className='bg-info text-center'>0</p>
           </div>
 
-          <div className='pl12' onClick={() => {player_onclick(14, 'pl12')}}>
-          <img src={props.myteam.all[14].photo} alt="" height={70} width={60}/>
+          <div className='plFWD1' onClick={() => {player_onclick(1, 4, 'plFWD1')}}>
+          <img src={props.teamData.FWD[1].photo} alt="" height={70} width={60}/>
           <p className='bg-info text-center'>0</p>
           </div>
-          <div className='pl13' onClick={() => {player_onclick(12, 'pl13')}}>
-          <img src={props.myteam.all[12].photo} alt="" height={70} width={60}/>
+          <div className='plMID5' onClick={() => {player_onclick(5, 3, 'plMID5')}}>
+          <img src={props.teamData.MID[5].photo} alt="" height={70} width={60}/>
           <p className='bg-info text-center'>0</p>
           </div>
-          <div className='pl14' onClick={() => {player_onclick(6, 'pl14')}}>
-          <img src={props.myteam.all[6].photo} alt="" height={70} width={60}/>
+          <div className='plDEF4' onClick={() => {player_onclick(4, 2, 'plDEF4')}}>
+          <img src={props.teamData.DEF[4].photo} alt="" height={70} width={60}/>
           <p className='bg-info text-center'>0</p>
           </div>
-          <div className='pl15' onClick={() => {player_onclick(1, 'pl15')}}>
-          <img src={props.myteam.all[1].photo} alt="" height={70} width={60}/>
+          <div className='plGKP1' onClick={() => {player_onclick(1, 1, 'plGKP1')}}>
+          <img src={props.teamData.GKP[1].photo} alt="" height={70} width={60}/>
           <p className='bg-info text-center'>0</p>
           </div>
+					<h6 className='cap'>C</h6>
+          <button className='c_btn btn btn-dark' onClick={() => {set_captain=true;}}>Select Captian</button>
+          <button className='vc_btn btn btn-secondary' onClick={() => {set_v_captain=true;}}>Select Vice-Captian</button>
       </div>
       
-      
   </div>;
+
 }
+

@@ -35,15 +35,14 @@ export default function PlayerSelector(props) {
         playerPos,
         minCost,
         maxCost
-      })
+      },{withCredentials:true})
     const data=response.data;
     setSearchResults({...data});
-    console.log(searchResults);
   }
 
   return (
     <>
-      <div className="player-selector m-3 border border-2 border-dark p-0 col-3 d-flex flex-column justify-content-center align-items-center">
+      <div className="player-selector m-3 border border-2 border-dark p-0 d-flex flex-column justify-content-center align-items-center">
         <h5 className="mt-3">Select Players</h5>
 
         <form onSubmit={handleFormSubmit}>

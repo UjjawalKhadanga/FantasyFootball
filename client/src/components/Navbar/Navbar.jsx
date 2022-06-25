@@ -1,12 +1,28 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default function Navbar(props) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    const checkLogin = async () => {
+      const res=await axios.post('http://localhost:8080/login/check',{},{withCredentials:true});
+      if(res.data.success){
+        setIsLoggedIn(true);
+      }
+      else{
+        setIsLoggedIn(false);
+      }
+      console.log(res.data)
+    }
+    checkLogin();
+  },[])
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-dark">
       <div className="container-fluid">
-        <a className="navbar-brand text-light" href="#">
+        <Link className="navbar-brand text-light" to="/">
           Fantasy Football
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -20,25 +36,38 @@ export default function Navbar(props) {
         </button>
         <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
-            <li className="nav-item" onClick={() => {if(props.teamsize==15){props.mtv(true)} else{alert("Please select total of 15 players")}}}>
-              <a className="nav-link text-light active" aria-current="page" href="#">
-                My Team
-              </a>
+
+            <li className="nav-item">
+              <Link className="nav-link text-light active" aria-current="page" to="/">
+                Home
+              </Link>
+
+            </li>
+            {
+              isLoggedIn ? 
+                <li className="nav-item">
+                  <Link className="nav-link text-light active" to="/logout">
+                    Logout
+                  </Link>
+                </li>
+                :
+                <li className="nav-item">
+                  <Link className="nav-link text-light active" aria-current="page" to="/loginregister">
+                    Login/Register
+                  </Link>
+                </li>                
+            }
+
+            <li className="nav-item">
+              <Link className="nav-link text-light active" aria-current="page" to="/selectyourteam">
+                SelectYourTeam
+              </Link>
+
             </li>
             <li className="nav-item">
-              <a className="nav-link text-light active" aria-current="page" href="#">
-                Login/Register
-              </a>
-            </li>
-            <li className="nav-item" onClick={() => {props.mtv(false)}}>
-              <a className="nav-link text-light active" aria-current="page" href="#">
-                Select your team
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link text-light active" aria-current="page" href="#">
-                Logout
-              </a>
+              <Link className="nav-link text-light active" aria-current="page" to="/myteam">
+                MyTeam
+              </Link>
             </li>
           </ul>
         </div>
