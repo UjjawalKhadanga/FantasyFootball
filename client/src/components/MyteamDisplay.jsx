@@ -95,10 +95,15 @@ export default function MyteamDisplay(props) {
     
 
 	//when empty array is recieved when loading page
-	if(props.teamData.DEF.length == 0){
+    // gkp = 2;
+    // def = 5;
+    // mid = 6;
+    // fwd = 2;
+	if(props.teamData.GKP.length < 2 || props.teamData.DEF.length < 5 || 
+        props.teamData.MID.length < 6 || props.teamData.FWD.length < 2){
 		console.log("MTD")
 		return (
-			<div>page did not load</div>
+			<div>Complete your team in Select Your Team Window</div>
 		)
 	}
 

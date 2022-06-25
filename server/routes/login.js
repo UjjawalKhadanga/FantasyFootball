@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
     res.cookie('jwt',token,{
         httpOnly: true,
         withCredentials : true,
-        maxAge: 1000 * 60 * 5
+        maxAge: 1000 * 60 * 60
     })
     return res.status(200).send({
         success: "Login success"
