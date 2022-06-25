@@ -18,6 +18,7 @@ export default function Login(props) {
 
     if(res.data.success){
       Navigate('../selectyourteam')
+      window.location.reload();
     }
     else{
       alert('Invalid Credentials')

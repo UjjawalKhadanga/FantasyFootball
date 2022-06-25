@@ -8,6 +8,7 @@ function Logout() {
     const res = await axios.post('http://localhost:8080/logout',{},{withCredentials:true});
     if(res.data.success){
       Navigate('../')
+      window.location.reload();
     }
   }
   return (
