@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
+const jwtAuth = require("../middleware/jwtAuth");
 
-router.get('/:userId', async (req,res) => {
-    const user = await User.findById(req.params.userId);
+router.get('/', jwtAuth ,async (req,res) => {
+    const user = await User.findById(req.userID);
     if(!user){
         return res.send({error: "User not found"})
     }

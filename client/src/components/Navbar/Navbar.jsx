@@ -1,7 +1,22 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default function Navbar(props) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    const checkLogin = async () => {
+      const res=await axios.post('http://localhost:8080/login/check',{},{withCredentials:true});
+      if(res.data.success){
+        setIsLoggedIn(true);
+      }
+      else{
+        setIsLoggedIn(false);
+      }
+      console.log(res.data)
+    }
+    checkLogin();
+  },[])
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-dark">
       <div className="container-fluid">
@@ -28,11 +43,20 @@ export default function Navbar(props) {
               </Link>
 
             </li>
-            <li className="nav-item">
-              <Link className="nav-link text-light active" aria-current="page" to="/login">
-                Login/Register
-              </Link>
-            </li>
+            {
+              isLoggedIn ? 
+                <li className="nav-item">
+                  <Link className="nav-link text-light active" to="/logout">
+                    Logout
+                  </Link>
+                </li>
+                :
+                <li className="nav-item">
+                  <Link className="nav-link text-light active" aria-current="page" to="/loginregister">
+                    Login/Register
+                  </Link>
+                </li>                
+            }
 
             <li className="nav-item">
               <Link className="nav-link text-light active" aria-current="page" to="/selectyourteam">

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const fs = require("fs");
+const jwtAuth = require("../middleware/jwtAuth");
 
 var data;
 
@@ -17,7 +18,7 @@ const teamcodes =
 
 
 // request body of json form => { minCost: 2, maxCost: 5, position: 'GKP', name: 'Ujjawal'}
-router.post('/', (req,res) => {
+router.post('/', jwtAuth, (req,res) => {
 	const minCost=req.body.minCost;
 	const maxCost=req.body.maxCost;
 	const playerPos=req.body.playerPos;

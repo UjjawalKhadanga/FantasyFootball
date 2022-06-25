@@ -35,7 +35,7 @@ export default function PlayerSelector(props) {
         playerPos,
         minCost,
         maxCost
-      })
+      },{withCredentials:true})
     const data=response.data;
     setSearchResults({...data});
   }

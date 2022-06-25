@@ -1,11 +1,12 @@
 const express = require("express");
+const jwtAuth = require("../middleware/jwtAuth");
 const router = express.Router();
 const User = require("../models/User");
 
-// request body of json form => { userId,team }
-router.post('/', async (req,res) => {
+// request body of json form => { team }
+router.post('/', jwtAuth ,async (req,res) => {
     const team= req.body.team;
-    const userId = req.body.userId;
+    const userId = req.userID;
 
     const user = await User.findById(userId);
     if(!user){
@@ -40,9 +41,9 @@ router.post('/', async (req,res) => {
     return res.send({success: "Players added in user's list"})
 })
 
-router.post('/updateteam', async (req,res) => {
+router.post('/updateteam', jwtAuth,async (req,res) => {
     const team= req.body.team;
-    const userId = req.body.userId;
+    const userId = req.userID;
 
     const user = await User.findById(userId);
     if(!user){
