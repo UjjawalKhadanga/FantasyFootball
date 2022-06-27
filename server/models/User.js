@@ -13,7 +13,8 @@ const userSchema = new mongoose.Schema({
         DEF: [Object],
         MID: [Object],
         FWD: [Object]
-    }
+    },
+    budget: Number
 });
 
 const User = mongoose.model("User", userSchema);

@@ -8,12 +8,14 @@ router.post("/", async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     const players = {GKP: [], DEF: [], MID: [], FWD: []};
+    const budget = 1000;
 
     const user = new User({
         name,
         email,
         password,
-        players
+        players,
+        budget
     });
     const result= await user.save();
     res.send(result);

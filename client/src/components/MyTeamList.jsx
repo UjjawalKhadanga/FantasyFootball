@@ -67,6 +67,7 @@ export default function MyTeamList(props) {
     <>
       <div className='my-team-list border border-2 m-3 border-dark'>
         <div className='p-3'>
+          <div className='row h5' style={{background:"hite"}}>Budget left : {props.budget}</div>
           <div className='row h5' style={{background:"purple"}}>Goalkeepers</div>
           <div className='GKP-content row'>
             {props.teamData.GKP.map((player, idx) => {

@@ -5,10 +5,13 @@ import MyTeamList from '../components/MyTeamList'
 
 function MyTeam() {
   const   [teamData, setTeamData] = useState({"GKP": [], "DEF": [], "MID": [], "FWD": []});
+  const [budget, setBudget] = useState(1000);
+
   useEffect(() => {
     const getData= async ()=>{
       const DBteamData = await axios.get('http://localhost:8080/getplayers/',{withCredentials:true});
-      setTeamData(DBteamData.data)
+      setTeamData(DBteamData.data.players)
+      setBudget(DBteamData.data.budget)
     }
     getData();
   },[])
@@ -26,7 +29,7 @@ function MyTeam() {
             <MyteamDisplay teamData={teamData} updateTeam={updateTeam}/>
         </div>
         <div className="col-4">
-            <MyTeamList teamData={teamData}/>
+            <MyTeamList teamData={teamData} budget={budget}/>
         </div>
     </div>
   )

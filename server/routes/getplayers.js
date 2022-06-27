@@ -8,8 +8,10 @@ router.get('/', jwtAuth ,async (req,res) => {
     if(!user){
         return res.send({error: "User not found"})
     }
-
-    return res.send(user.players);
+    return res.send({
+        players: user.players,
+        budget: user.budget
+    });
 })
 
 module.exports = router;

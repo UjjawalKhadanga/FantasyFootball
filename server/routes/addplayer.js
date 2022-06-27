@@ -21,6 +21,8 @@ router.post('/', jwtAuth ,async (req,res) => {
     var v_cappresent = false;
     pos.forEach(p => {team[p].forEach(player => {if(player.v_captain) {v_cappresent=true; console.log(player)} })})
     if(!v_cappresent && team['DEF'].length > 0) {team['DEF'][0].v_captain = true;}
+    
+    //user.budget = 1000;
     pos.forEach(p => {
         team[p].forEach(player => {
             // if player is not in the team, add it
@@ -32,11 +34,17 @@ router.post('/', jwtAuth ,async (req,res) => {
             }
             if(!playerpresent){
                 user.players[p].push(player);
+                user.budget -= player.details.now_cost;
             }
         });
     });
 
-    
+    if(user.budget < 0){
+        //alert("Not enough budget");
+        console.log("Not enough budget");
+        return res.send();
+    }
+
     await user.save();
     return res.send({success: "Players added in user's list"})
 })
@@ -51,11 +59,13 @@ router.post('/updateteam', jwtAuth,async (req,res) => {
     }
     
     const pos=['MID','GKP','FWD','DEF'];
+    user.budget = 1000;
 
     pos.forEach(p => {
         user.players[p] = [];
         team[p].forEach(player => {    
             user.players[p].push(player);
+            user.budget -= player.details.now_cost;
         });
     });
     await user.save();
