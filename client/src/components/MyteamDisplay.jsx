@@ -116,66 +116,66 @@ export default function MyteamDisplay(props) {
 
           <div className='plFWD0' onClick={() => {player_onclick(0, 4, 'plFWD0')}}>
           <img src={props.teamData.FWD[0].photo} alt="" height={70} width={60}/>
-          <p className='bg-info text-center'>0</p>
+          <p className='bg-info text-center'>{props.teamData.FWD[0].details.web_name}</p>
           </div>
           <div className='plMID4' onClick={() => {player_onclick(4, 3, 'plMID4')}}>
           <img src={props.teamData.MID[4].photo} alt="" height={70} width={60}/>
-          <p className='bg-info text-center'>0</p>
+          <p className='bg-info text-center'>{props.teamData.MID[4].details.web_name}</p>
           </div>
           <div className='plMID3' onClick={() => {player_onclick(3, 3, 'plMID3')}}>
           <img src={props.teamData.MID[3].photo} alt="" height={70} width={60}/>
-          <p className='bg-info text-center'>0</p>
+          <p className='bg-info text-center'>{props.teamData.MID[3].details.web_name}</p>
           </div>
           <div className='plMID2' onClick={() => {player_onclick(2, 3, 'plMID2')}}>
           <img src={props.teamData.MID[2].photo} alt="" height={70} width={60}/>
-          <p className='bg-info text-center'>0</p>
+          <p className='bg-info text-center'>{props.teamData.MID[2].details.web_name}</p>
           </div>
           <div className='plMID1' onClick={() => {player_onclick(1, 3, 'plMID1')}}>
           <img src={props.teamData.MID[1].photo} alt="" height={70} width={60}/>
-          <p className='bg-info text-center'>0</p>
+          <p className='bg-info text-center'>{props.teamData.MID[1].details.web_name}</p>
           </div>
           <div className='plMID0' onClick={() => {player_onclick(0, 3, 'plMID0')}}>
           <img src={props.teamData.MID[0].photo} alt="" height={70} width={60}/>
-          <p className='bg-info text-center'>0</p>
+          <p className='bg-info text-center'>{props.teamData.MID[0].details.web_name}</p>
           </div>
           <div className='plDEF3' onClick={() => {player_onclick(3, 2, 'plDEF3')}}>
           <img src={props.teamData.DEF[3].photo} alt="" height={70} width={60}/>
-          <p className='bg-info text-center'>0</p>
+          <p className='bg-info text-center'>{props.teamData.DEF[3].details.web_name}</p>
           </div>
           <div className='plDEF2' onClick={() => {player_onclick(2, 2, 'plDEF2')}}>
           <img src={props.teamData.DEF[2].photo} alt="" height={70} width={60}/>
-          <p className='bg-info text-center'>0</p>
+          <p className='bg-info text-center'>{props.teamData.DEF[2].details.web_name}</p>
           </div>
           <div className='plDEF1' onClick={() => {player_onclick(1, 2, 'plDEF1')}}>
           <img src={props.teamData.DEF[1].photo} alt="" height={70} width={60}/>
-          <p className='bg-info text-center'>0</p>
+          <p className='bg-info text-center'>{props.teamData.DEF[1].details.web_name}</p>
           </div>
           <div className='plDEF0' onClick={() => {player_onclick(0, 2, 'plDEF0')}}>
           <img src={props.teamData.DEF[0].photo} alt="" height={70} width={60}/>
-          <p className='bg-info text-center'>0</p>
+          <p className='bg-info text-center'>{props.teamData.DEF[0].details.web_name}</p>
           </div>
           <div className='plGKP0' onClick={() => {player_onclick(0, 1, 'plGKP0')}}>
           <img src={props.teamData.GKP[0].photo} alt="" height={70} width={60}/>
-          <p className='bg-info text-center'>0</p>
+          <p className='bg-info text-center'>{props.teamData.GKP[0].details.web_name}</p>
           </div>
 
           <div className='plFWD1' onClick={() => {player_onclick(1, 4, 'plFWD1')}}>
           <img src={props.teamData.FWD[1].photo} alt="" height={70} width={60}/>
-          <p className='bg-info text-center'>0</p>
+          <p className='bg-info text-center'>{props.teamData.FWD[1].details.web_name}</p>
           </div>
           <div className='plMID5' onClick={() => {player_onclick(5, 3, 'plMID5')}}>
           <img src={props.teamData.MID[5].photo} alt="" height={70} width={60}/>
-          <p className='bg-info text-center'>0</p>
+          <p className='bg-info text-center'>{props.teamData.MID[5].details.web_name}</p>
           </div>
           <div className='plDEF4' onClick={() => {player_onclick(4, 2, 'plDEF4')}}>
           <img src={props.teamData.DEF[4].photo} alt="" height={70} width={60}/>
-          <p className='bg-info text-center'>0</p>
+          <p className='bg-info text-center'>{props.teamData.DEF[4].details.web_name}</p>
           </div>
           <div className='plGKP1' onClick={() => {player_onclick(1, 1, 'plGKP1')}}>
           <img src={props.teamData.GKP[1].photo} alt="" height={70} width={60}/>
-          <p className='bg-info text-center'>0</p>
+          <p className='bg-info text-center'>{props.teamData.GKP[1].details.web_name}</p>
           </div>
-					<h6 className='cap'>C</h6>
+					{/* <h6 className='cap'>C</h6> */}
           <button className='c_btn btn btn-dark' onClick={() => {set_captain=true;}}>Select Captian</button>
           <button className='vc_btn btn btn-secondary' onClick={() => {set_v_captain=true;}}>Select Vice-Captian</button>
       </div>

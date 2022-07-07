@@ -35,15 +35,4 @@ router.post("/", async (req, res) => {
 });
 
 
-router.post("/check", jwtAuth,async(req,res)=>{
-    const token=req.cookies.jwt
-    if(!token){
-        return res.status(401).json({error: "Cookie Not Set"})
-    }
-    const verify = jwt.verify(token,process.env.JWT_SECRET);
-    if(!verify){
-        return res.status(400).json({error: "Invalid Cookie"})
-    }
-    return res.status(200).json({success: "Valid Cookie"})
-})
 module.exports = router;

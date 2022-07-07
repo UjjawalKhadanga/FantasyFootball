@@ -11,8 +11,8 @@ router.get('/bootstrap-static/',async (req,res) => {
 })
 
 router.get('/event/:gameweekId/live/',async (req,res) => {
+    console.log(req.params.gameweekId)
     const response = await fetch(`https://fantasy.premierleague.com/api/event/${req.params.gameweekId}/live/`)
-    console.log(response)
     const data = await response.json();
     res.json(data)
 })
