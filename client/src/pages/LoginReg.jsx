@@ -5,7 +5,7 @@ import Register from '../components/Register/Register.jsx'
 export default function LoginReg(props) {
   return (
       <div className="container">
-          <Login/>
+          <Login setIslogged={props.setIslogged}/>
           <Register />
       </div>
   );

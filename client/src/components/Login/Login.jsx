@@ -17,8 +17,8 @@ export default function Login(props) {
     console.log(res.data)
 
     if(res.data.success){
+      props.setIslogged(true);
       Navigate('../selectyourteam')
-      window.location.reload();
     }
     else{
       alert('Invalid Credentials')

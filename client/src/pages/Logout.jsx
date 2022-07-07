@@ -2,14 +2,11 @@ import axios from 'axios';
 import React from 'react'
 import {useNavigate} from 'react-router-dom'
 
-function Logout() {
+function Logout(props) {
   const Navigate=useNavigate();
   const handleClick =async ()=>{
-    const res = await axios.post('http://localhost:8080/logout',{},{withCredentials:true});
-    if(res.data.success){
-      Navigate('../')
-      window.location.reload();
-    }
+    props.setIslogged(false);
+    Navigate('../')
   }
   return (
     <div className='container d-flex flex-column'>

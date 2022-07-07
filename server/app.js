@@ -50,4 +50,8 @@ app.use("/register", registerR);
 const logoutR = require("./routes/logout");
 app.use("/logout", logoutR)
 
+// api router
+const apiR = require("./routes/api");
+app.use("/api", apiR);
+
 app.listen(8080, console.log("Listening"));

@@ -5,10 +5,11 @@ const jwtAuth = require("../middleware/jwtAuth");
 
 router.get('/', jwtAuth ,async (req,res) => {
     const user = await User.findById(req.userID);
+    console.log(user);
     if(!user){
         return res.send({error: "User not found"})
     }
-    return res.send({
+    return res.json({
         players: user.players,
         budget: user.budget
     });

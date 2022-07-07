@@ -19,6 +19,7 @@
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.0",
+    "node-fetch": "^2.6.6",
     "nodemon": "^2.0.15",
     "phantom": "^6.3.0",
     "pretty": "^2.0.0"

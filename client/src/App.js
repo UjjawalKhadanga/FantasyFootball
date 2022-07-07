@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React,{useState} from 'react';
 import Navbar from './components/Navbar/Navbar';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import LoginReg from './pages/LoginReg';
@@ -10,14 +10,14 @@ import Logout from './pages/Logout';
 
 
 function App() {
-
+  const [islogged,setIslogged]=useState(false);
   return (
       <BrowserRouter>
-        <Navbar />
+        <Navbar islogged={islogged}/>
         <Routes>
             <Route path="/selectyourteam" element={<SelectYourTeam/>}/>
-            <Route path="/loginregister" element={<LoginReg/>}/>
-            <Route path="/logout" element={<Logout/>}/>
+            <Route path="/loginregister" element={<LoginReg setIslogged={setIslogged}/>}/>
+            <Route path="/logout" element={<Logout setIslogged={setIslogged}/>}/>
             <Route path="/" element={<Home/>}/>
             <Route path="/myteam" element={<MyTeam/>}/>
         </Routes>

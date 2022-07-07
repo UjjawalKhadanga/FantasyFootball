@@ -1,6 +1,5 @@
-import React,{Component} from 'react';
+import React from 'react';
 import './stylesheets/MyteamDisplay.css'
-import axios from 'axios';
 
 export default function MyteamDisplay(props) {
     const imgsrc = "https://thumbs.dreamstime.com/b/soccer-field-football-stadium-vertical-background-green-grass-painted-line-sport-play-overhead-view-pitch-grou-ground-211653743.jpg";
