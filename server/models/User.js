@@ -14,6 +14,7 @@ const userSchema = new mongoose.Schema({
         MID: [Object],
         FWD: [Object]
     },
+    points: {},
     budget: Number
 });
 

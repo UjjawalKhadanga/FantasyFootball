@@ -68,25 +68,25 @@ export default function MyTeamList(props) {
       <div className='my-team-list border border-2 m-3 border-dark'>
         <div className='p-3'>
           <div className='row h5' style={{background:"hite"}}>Budget left : {props.budget}</div>
-          <div className='row h5' style={{background:"purple"}}>Goalkeepers</div>
+          <div className='row h5' style={{background:"purple", color:"white"}}>Goalkeepers ({2 - props.teamData.GKP.length} left)</div>
           <div className='GKP-content row'>
             {props.teamData.GKP.map((player, idx) => {
                 return <PlayerMeta player={player} saveMyTeam={saveMyTeam} idx={idx}/>
             })}
           </div>
-          <div className='row h5' style={{background:"red"}}>Defenders</div>
+          <div className='row h5' style={{background:"red"}}>Defenders ({5 - props.teamData.DEF.length} left)</div>
           <div className='DEF-content row'>
             {props.teamData.DEF.map((player, idx) => {
                 return <PlayerMeta player={player} saveMyTeam={saveMyTeam} idx={idx}/>
             })}
           </div>
-          <div className='row h5' style={{background:"pink"}}>Midfielders</div>
+          <div className='row h5' style={{background:"pink"}}>Midfielders ({6 - props.teamData.MID.length} left)</div>
           <div className='MID-content row'>
             {props.teamData.MID.map((player, idx) => {
                 return <PlayerMeta player={player} saveMyTeam={saveMyTeam} idx={idx}/>
             })}
           </div>
-          <div className='row h5' style={{background:"orange"}}>Forwards</div>
+          <div className='row h5' style={{background:"orange"}}>Forwards ({2 - props.teamData.FWD.length} left)</div>
           <div className='FWD-content row'>
             {props.teamData.FWD.map((player, idx) => {
                 return <PlayerMeta player={player} saveMyTeam={saveMyTeam} idx={idx}/>
