@@ -5,7 +5,11 @@ import {useNavigate} from 'react-router-dom'
 function Logout(props) {
   const Navigate=useNavigate();
   const handleClick =async ()=>{
+    const res = await axios.post('http://localhost:8080/logout',{},{withCredentials:true})
+    // props.setIslogged(false);
+    window.sessionStorage.setItem("isLogged", false);
     props.setIslogged(false);
+
     Navigate('../')
   }
   return (

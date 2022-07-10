@@ -55,6 +55,11 @@ export default function Navbar(props) {
                 MyTeam
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link text-light active" aria-current="page" to="/leaderboard">
+                Leaderboard
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

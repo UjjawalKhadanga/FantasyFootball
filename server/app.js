@@ -54,4 +54,8 @@ app.use("/logout", logoutR)
 const apiR = require("./routes/api");
 app.use("/api", apiR);
 
+// UserData router
+const userData = require("./routes/userdata");
+app.use("/userdata", userData);
+
 app.listen(8080, console.log("Listening"));

@@ -17,6 +17,7 @@ export default function Login(props) {
     console.log(res.data)
 
     if(res.data.success){
+      window.sessionStorage.setItem("isLogged", true);
       props.setIslogged(true);
       Navigate('../selectyourteam')
     }

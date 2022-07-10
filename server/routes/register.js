@@ -8,13 +8,17 @@ router.post("/", async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     const players = {GKP: [], DEF: [], MID: [], FWD: []};
+    const points = [];
     const budget = 1000;
+
+    for(let i=0; i<38; i++) {points.push(0);}
 
     const user = new User({
         name,
         email,
         password,
         players,
+        points,
         budget
     });
     const result= await user.save();
