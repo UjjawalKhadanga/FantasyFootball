@@ -17,21 +17,24 @@ function MyTeam() {
   },[])
 
   const updateTeam = async (newData) => {
-    const res=axios.post('http://localhost:8080/addplayer/updateteam',{
+    await axios.post('http://localhost:8080/addplayer/updateteam',{
       team: newData
     },{withCredentials:true})
     setTeamData(newData);
   }
 
   return (
-      <div className='row p-3'>
+    <div className="p-2 m-2 ">
+      <div className='row'>
         <div className="col-8">
             <MyteamDisplay teamData={teamData} updateTeam={updateTeam}/>
         </div>
-        <div className="col-4">
+        <div className="col-4 border border-2 border-dark"  style={{height: "89vh", overflow:"auto", overflowX:"hidden"}}>
             <MyTeamList teamData={teamData} budget={budget}/>
         </div>
       </div>
+    </div>
+
   )
 }
 

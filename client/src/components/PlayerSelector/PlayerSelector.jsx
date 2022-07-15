@@ -97,7 +97,9 @@ export default function PlayerSelector(props) {
         </form>
   
       </div>
-      <PlayerSearchResultsDisplay searchResults={searchResults} p_selected={props.p_selected}/>
+      <div className="border border-2 border-dark" style={{height:"40vh", overflowX:"hidden"}}>
+        <PlayerSearchResultsDisplay searchResults={searchResults} p_selected={props.p_selected}/>
+      </div>
     </>
   );
 }

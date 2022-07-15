@@ -50,14 +50,14 @@ function SelectYourTeam() {
 
 
   return (
-    <div className="row p-2">
-      <div className="col">
+    <div className="row m-2">
+     <div className="col-4">
         <PlayerSelector p_selected={(data)=>{setPlayerData(data)}}/>
       </div>
-      <div className="col">
+      <div className="col-4">
         <PlayerStats player={playerData} addPlayer={(data)=>{addPlayer(data)}}/>
       </div>
-      <div className="col">
+      <div className="col-4 border border-2 border-dark" style={{height: "89vh", overflow:"auto", overflowX:"hidden"}}>
         <MyTeamList teamData={teamData} budget={budget} delPlayer={delPlayer}/>
       </div>
     </div>

@@ -13,7 +13,7 @@ function PlayerMeta(props) {
 	<li className="list-group-item " style={{fontSize: 15}}>
 		<div className="player-meta d-flex" onClick={() => {props.p_selected(playerr_details)}} style={{cursor: "pointer"}}>
 			<div className="player-photo col-2">
-				<img src={props.photo} height={50}></img>
+				<img alt={`${props.firstname}`} src={props.photo} height={50}></img>
 			</div>
 			<div className="name d-flex col-3 flex-column">
 				<div className="first-name">{props.firstname}</div>
@@ -45,13 +45,13 @@ export default function PlayerSearchResultsDisplay(props) {
 
   if(props.searchResults.result.length === 0){
     return (
-      <div className="m-3 border border-2 border-dark">
-          <div className='d-flex justify-content-center'>No Players Found</div>
+      <div className="m-3">
+          <div className='text-center lead'>Players Not Found</div>
       </div>
     );
   }
   return (
-    <div className="m-3 border border-2 border-dark">
+    <div className="m-3">
       <ul class="list-group w-100">
         {props.searchResults.result.map((player) => {
           return (

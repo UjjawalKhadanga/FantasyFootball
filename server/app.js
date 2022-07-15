@@ -4,7 +4,7 @@ const cookieParser = require("cookie-parser")
 const cors = require("cors");
 const express = require("express");
 const app = express();
-require('dotenv').config();
+require('dotenv').config({path: "./vars/.env"});
 
 const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGODB_URI);

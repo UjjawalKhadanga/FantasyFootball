@@ -66,7 +66,7 @@ export default function MyteamDisplay(props) {
         }
         //select player2 and swap
         else{
-            if(pos != p_to_swap.pos) {alert("Please select players from same position!");return;}
+            if(pos !== p_to_swap.pos) {alert("Please select players from same position!");return;}
             document.getElementsByClassName(p_to_swap.class)[0].style.background = "none";
             is_captain();
 						let newData = {...props.teamData};

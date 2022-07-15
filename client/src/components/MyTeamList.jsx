@@ -64,7 +64,7 @@ export default function MyTeamList(props) {
   
   return (
     <>
-      <div className='my-team-list border border-2 border-dark'>
+      <div className='my-team-list'>
         <div className='p-3'>
           <div className='d-flex justify-content-center h3 m-3' style={{background:"hite"}}>Budget left : {props.budget}</div>
           <div className="text-center lead">Team Status: {
@@ -76,25 +76,25 @@ export default function MyTeamList(props) {
           <div className='row p-1 h5' style={{background:"skyblue"}}>Goalkeepers ({2 - props.teamData.GKP.length} left)</div>
           <div className='GKP-content row'>
             {props.teamData.GKP.map((player, idx) => {
-                return <PlayerMeta player={player} saveMyTeam={saveMyTeam} idx={idx}/>
+                return <PlayerMeta player={player} saveMyTeam={saveMyTeam} idx={idx} key={idx}/>
             })}
           </div>
           <div className='row p-1 h5' style={{background:"pink"}}>Defenders ({5 - props.teamData.DEF.length} left)</div>
           <div className='DEF-content row'>
             {props.teamData.DEF.map((player, idx) => {
-                return <PlayerMeta player={player} saveMyTeam={saveMyTeam} idx={idx}/>
+                return <PlayerMeta player={player} saveMyTeam={saveMyTeam} idx={idx} key={idx}/>
             })}
           </div>
           <div className='row p-1 h5' style={{background:"orange"}}>Midfielders ({6 - props.teamData.MID.length} left)</div>
           <div className='MID-content row'>
             {props.teamData.MID.map((player, idx) => {
-                return <PlayerMeta player={player} saveMyTeam={saveMyTeam} idx={idx}/>
+                return <PlayerMeta player={player} saveMyTeam={saveMyTeam} idx={idx} key={idx}/>
             })}
           </div>
           <div className='row p-1 h5' style={{background:"darkkhaki"}}>Forwards ({2 - props.teamData.FWD.length} left)</div>
           <div className='FWD-content row'>
             {props.teamData.FWD.map((player, idx) => {
-                return <PlayerMeta player={player} saveMyTeam={saveMyTeam} idx={idx}/>
+                return <PlayerMeta player={player} saveMyTeam={saveMyTeam} idx={idx} key={idx}/>
             })}
           </div>
         </div>

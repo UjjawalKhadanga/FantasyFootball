@@ -39,8 +39,11 @@ export default function PlayerStats(props) {
   if(props.player){
   return (
     <div className="player.details-stats container border border-dark border-2 ">
-      <div className="col text-center p-2">
-        <img src={props.player.photo} alt="" height={250} width={200} />
+      <div className="col text-center">
+        <div className='d-flex justify-content-center w-100' style={{height:"250px", width: "200px"}}>
+          <img src={props.player.photo} alt={`${props.player.details.first_name}`}/>
+        </div>
+        <hr className='my-4'/>
         <div>
           <div className="row">
             <div className="col-2 d-flex justify-content-center align-items-center">
@@ -56,7 +59,7 @@ export default function PlayerStats(props) {
             </div>
           </div>
           <div className="h6">{props.player.pos}</div>
-          <div className="row bg-info">
+          <div className="row bg-secondary">
             <div className="col text-center">Form</div>
             <div className="col text-center">Influence</div>
             <div className="col text-center">Creativity</div>
@@ -69,7 +72,7 @@ export default function PlayerStats(props) {
             <div className="col text-center">{props.player.details.threat}</div>
 
           </div>
-          <div className="row bg-info">
+          <div className="row bg-secondary">
             <div className="col text-center">This Week Pts</div>
             <div className="col text-center">Total Pts</div>
             <div className="col text-center">Average Pts</div>
@@ -85,7 +88,7 @@ export default function PlayerStats(props) {
             <div className="col text-center">{props.player.details.minutes}</div>
 
           </div>
-          <div className="row bg-info">
+          <div className="row bg-secondary">
             <div className="col text-center">Goals Scored</div>
             <div className="col text-center">Goals Conceeed</div>
             <div className="col text-center">Assists</div>
@@ -101,7 +104,7 @@ export default function PlayerStats(props) {
             <div className="col text-center">{props.player.details.own_goals}</div>
 
           </div>
-          <div className="row bg-info">
+          <div className="row bg-secondary">
             <div className="col text-center">Saves</div>
             <div className="col text-center">Clean Sheets</div>
             <div className="col text-center">Yellow Cards</div>
@@ -118,14 +121,13 @@ export default function PlayerStats(props) {
             <div className="col text-center">{props.player.details.red_cards}</div>
           </div>
           <div className="row">
-            <button className="btn btn-primary mt-3" onClick={()=>{props.addPlayer(props.player)}}>Buy</button>
-
+            <button className="btn btn-primary mb-3" onClick={()=>{props.addPlayer(props.player)}}>Buy</button>
           </div>
         </div>
       </div>
     </div>
   );
   }else{
-    return <div className='player.details-stats container border border-dark border-2'>No Player Selected</div>
+    return <div className='player.details-stats container border border-dark border-2 lead text-center'>No Player Selected</div>
   }
 }
