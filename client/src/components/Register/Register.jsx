@@ -1,10 +1,11 @@
 import axios from 'axios'
 import React,{useState} from 'react'
 
-export default function Login() {
+export default function Register() {
     const [name,setName] = useState('')
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
+
     const handleSubmit= async (e)=>{
         e.preventDefault()
         console.log(name,email,password)
@@ -14,7 +15,13 @@ export default function Login() {
             email,
             password
         });
-        console.log(res)
+        if(res.data.success){
+          alert(`An account for ${name} is registered :)`)
+        }
+        if(res.data.error){
+          alert(`An account with ${name} is already registered :(`)
+        }
+        console.log(res.data)
     }
 
   return (

@@ -12,6 +12,11 @@ router.post("/", async (req, res) => {
     const budget = 1000;
 
     for(let i=0; i<38; i++) {points.push(0);}
+    
+    const already=await User.findOne({name})
+    if(already){
+        return res.json({error:"Already Registered"})
+    }
 
     const user = new User({
         name,
@@ -22,7 +27,7 @@ router.post("/", async (req, res) => {
         budget
     });
     const result= await user.save();
-    res.send(result);
+    res.json({success:"User sucessfully registered"});
 });
 
 module.exports = router;

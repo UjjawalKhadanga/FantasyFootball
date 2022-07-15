@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react'
-import GameweekStatus from '../components/GameweekStatus/GameweekStatus';
 
 
 export default function Leaderboard() {
@@ -44,7 +43,7 @@ export default function Leaderboard() {
     getAllUserData()
   },[])
   useEffect(()=>{
-    if(GameWeekNumber == 0){
+    if(GameWeekNumber === 0){
       getAllUserData();
     }else{
       getUserData(GameWeekNumber);
@@ -52,22 +51,24 @@ export default function Leaderboard() {
   },[GameWeekNumber])
   if(loading){
     return(
-      <div>
-        Loading...
+      <div className='container d-flex justify-content-center mt-5'>
+       <div className="spinner-border" role="status">
+        <span className="sr-only"></span>
+      </div>
       </div>
     );
   }
   return (
     <div>
-      <div>
-      <div>
+      <div className='container'>
         <div className="row">
-          <div className="col-1">
-            <label for="gameweek_number" className="form-label mt-2 pl-2">
-              GameWeek
+          <div className="d-flex justify-content-center mt-2">
+          <div className="col-1 p-1">
+            <label for="gameweek_number" className="form-label lead h-100">
+              GameWeek:
             </label>
           </div>
-          <div className="col-2">
+          <div className="col-3">
             <select id="gameweek_number" className="form-select" onChange={(e)=>{setGameWeekNumber(e.target.value)}}>
                 <option value="0">ALL</option>
               {
@@ -77,31 +78,27 @@ export default function Leaderboard() {
               }
             </select>
           </div>
+          </div>
+          <hr className='my-4'/>
         </div>
       </div>
-
-
-
-      </div>
-      <Leaderboard_Table UserData={UserData}/>
+      <LeaderboardTable UserData={UserData}/>
     </div>
   )
 }
 
 
 
-function Leaderboard_Table(props) {
+function LeaderboardTable(props) {
 
   
   return (
-    <div>
-
-        <table className="table">
-        <thead className="thead-dark">
+    <div className='container'>
+        <table className="table table-striped border">
+        <thead>
             <tr>
             <th scope="col">Rank</th>
-            <th scope="col">Username</th>
-            <th scope="col">Team Name</th>
+            <th scope="col">UserName</th>
             <th scope="col">Points</th>
             </tr>
         </thead>
@@ -109,12 +106,11 @@ function Leaderboard_Table(props) {
           props.UserData.map((user, idx) => {
           return (
             <tbody>
-            <tr>
-            <th scope="row">{idx+1}</th>
-            <td>{user.name}</td>
-            <td>{user.email}</td>
-            <td>{user.points}</td>
-            </tr>
+              <tr>
+                <th scope="row">{idx+1}</th>
+                <td>@{user.name}</td>
+                <td>{user.points}</td>
+              </tr>
             </tbody>)
         })
       }

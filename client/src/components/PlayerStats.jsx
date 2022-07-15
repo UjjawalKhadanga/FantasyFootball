@@ -3,14 +3,14 @@ import React from 'react';
 export default function PlayerStats(props) {
 
 
-  var teamcodes = 
-  ['ARS','AVL','BRE','BHA','BUR', 'CHE','CRY', 'EVE','LEI',  'LEE',
-   'LIV', 'MCI','MUN',  'NEW','NOR', 'SOU','TOT',  'WAT','WHU',  'WOL'
-	];
+  // let teamcodes = 
+  // ['ARS','AVL','BRE','BHA','BUR', 'CHE','CRY', 'EVE','LEI',  'LEE',
+  //  'LIV', 'MCI','MUN',  'NEW','NOR', 'SOU','TOT',  'WAT','WHU',  'WOL'
+	// ];
 
-  const buybtn_fn = () => {
-    props.myteam(props.player);
-  };
+  // const buybtn_fn = () => {
+  //   props.myteam(props.player);
+  // };
 
   // if(props.player){
   // return <div className='props.player.details-stats col'>
@@ -38,8 +38,8 @@ export default function PlayerStats(props) {
   
   if(props.player){
   return (
-    <div className="player.details-stats container border border-dark border-2 mt-3">
-      <div className="col text-center">
+    <div className="player.details-stats container border border-dark border-2 ">
+      <div className="col text-center p-2">
         <img src={props.player.photo} alt="" height={250} width={200} />
         <div>
           <div className="row">
@@ -126,6 +126,6 @@ export default function PlayerStats(props) {
     </div>
   );
   }else{
-    return <div className='player.details-stats container border border-dark border-2 mt-3'>No Player Selected</div>
+    return <div className='player.details-stats container border border-dark border-2'>No Player Selected</div>
   }
 }

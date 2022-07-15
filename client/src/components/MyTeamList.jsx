@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
-import axios from 'axios';
 
 
 
@@ -39,7 +38,7 @@ function PlayerMeta(props) {
 	<li className="list-group-item" style={{fontSize: 15}}>
 		<div className="player-meta d-flex">
 			<div className="player-photo col-2 ">
-				<img src={props.player.photo} height={50}></img>
+				<img alt="player" src={props.player.photo} height={50}></img>
 			</div>
 			<div className="name col-4 d-flex flex-column">
 				<div className="first-name">{props.player.details.first_name[0]}.{props.player.details.second_name}</div>
@@ -65,28 +64,34 @@ export default function MyTeamList(props) {
   
   return (
     <>
-      <div className='my-team-list border border-2 m-3 border-dark'>
+      <div className='my-team-list border border-2 border-dark'>
         <div className='p-3'>
-          <div className='row h5' style={{background:"hite"}}>Budget left : {props.budget}</div>
-          <div className='row h5' style={{background:"purple", color:"white"}}>Goalkeepers ({2 - props.teamData.GKP.length} left)</div>
+          <div className='d-flex justify-content-center h3 m-3' style={{background:"hite"}}>Budget left : {props.budget}</div>
+          <div className="text-center lead">Team Status: {
+             (2-props.teamData.GKP.length +  5-props.teamData.DEF.length +  6-props.teamData.MID.length +  2-props.teamData.FWD.length === 0) ?
+             "Complete"
+             :
+             "Incomplete"
+          } </div>
+          <div className='row p-1 h5' style={{background:"skyblue"}}>Goalkeepers ({2 - props.teamData.GKP.length} left)</div>
           <div className='GKP-content row'>
             {props.teamData.GKP.map((player, idx) => {
                 return <PlayerMeta player={player} saveMyTeam={saveMyTeam} idx={idx}/>
             })}
           </div>
-          <div className='row h5' style={{background:"red"}}>Defenders ({5 - props.teamData.DEF.length} left)</div>
+          <div className='row p-1 h5' style={{background:"pink"}}>Defenders ({5 - props.teamData.DEF.length} left)</div>
           <div className='DEF-content row'>
             {props.teamData.DEF.map((player, idx) => {
                 return <PlayerMeta player={player} saveMyTeam={saveMyTeam} idx={idx}/>
             })}
           </div>
-          <div className='row h5' style={{background:"pink"}}>Midfielders ({6 - props.teamData.MID.length} left)</div>
+          <div className='row p-1 h5' style={{background:"orange"}}>Midfielders ({6 - props.teamData.MID.length} left)</div>
           <div className='MID-content row'>
             {props.teamData.MID.map((player, idx) => {
                 return <PlayerMeta player={player} saveMyTeam={saveMyTeam} idx={idx}/>
             })}
           </div>
-          <div className='row h5' style={{background:"orange"}}>Forwards ({2 - props.teamData.FWD.length} left)</div>
+          <div className='row p-1 h5' style={{background:"darkkhaki"}}>Forwards ({2 - props.teamData.FWD.length} left)</div>
           <div className='FWD-content row'>
             {props.teamData.FWD.map((player, idx) => {
                 return <PlayerMeta player={player} saveMyTeam={saveMyTeam} idx={idx}/>

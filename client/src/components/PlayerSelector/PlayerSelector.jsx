@@ -42,7 +42,7 @@ export default function PlayerSelector(props) {
 
   return (
     <>
-      <div className="player-selector m-3 border border-2 border-dark p-0 d-flex flex-column justify-content-center align-items-center">
+      <div className="player-selector border border-2 border-dark d-flex flex-column justify-content-center align-items-center">
         <h5 className="mt-3">Select Players</h5>
 
         <form onSubmit={handleFormSubmit}>

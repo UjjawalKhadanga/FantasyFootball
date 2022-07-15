@@ -24,14 +24,14 @@ function MyTeam() {
   }
 
   return (
-    <div className='row'>
+      <div className='row p-3'>
         <div className="col-8">
             <MyteamDisplay teamData={teamData} updateTeam={updateTeam}/>
         </div>
         <div className="col-4">
             <MyTeamList teamData={teamData} budget={budget}/>
         </div>
-    </div>
+      </div>
   )
 }
 

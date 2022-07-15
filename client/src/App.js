@@ -23,7 +23,7 @@ function App() {
             <Route path="/selectyourteam" element={<SelectYourTeam/>}/>
             <Route path="/loginregister" element={<LoginReg setIslogged={setIslogged}/>}/>
             <Route path="/logout" element={<Logout setIslogged={setIslogged}/>}/>
-            <Route path="/" element={<Home/>}/>
+            <Route path="/" element={<Home isLogged={islogged}/>}/>
             <Route path="/myteam" element={<MyTeam/>}/>
             <Route path="/leaderboard" element={<Leaderboard/>}/>
         </Routes>

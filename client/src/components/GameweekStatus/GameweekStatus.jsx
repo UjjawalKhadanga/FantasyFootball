@@ -24,6 +24,7 @@ function Scores({DEF,MID,FWD,GKP,gameweekScores}) {
     },[])
   return (
     <div className="container">
+        <hr className='my-4'/>
         <div className="row">
             <div className="col-4">
                 Total Score : {score}
@@ -35,41 +36,59 @@ function Scores({DEF,MID,FWD,GKP,gameweekScores}) {
                 Best player score : {bestPlayerScore}
             </div>
         </div>
-        <div className="d-flex flex-row">
-            GoalKeepers:
-            {
-                GKP.map((player)=>{
-                    // return player.details.first_name
-                    return <img classNames="p-1" src={player.photo} height='70' width="60" alt="player" />
-                })
-            }
+        <hr className='my-4'/>
+
+        <div className="d-flex">
+            <div className="col-2">
+                <div className='text-center'>GoalKeepers:</div>
+            </div>
+            <div className="col-10">
+                {
+                    GKP.map((player)=>{
+                        // return player.details.first_name
+                        return <img className='border border-dark' src={player.photo} height='70' width="60" alt="player" />
+                    })
+                }
+            </div>
         </div>
-        <div className="d-flex flex-row">
-            Defenders:
-            {
-                DEF.map((player)=>{
-                    // return player.details.first_name
-                    return <img classNames="p-1" src={player.photo} height='70' width="60" alt="player" />
-                })
-            }
+        <div className="d-flex">
+            <div className="col-2">
+                <div className='text-center'>Defenders:</div>
+            </div>
+            <div className="col-10">
+                {
+                    DEF.map((player)=>{
+                        // return player.details.first_name
+                        return <img className='border border-dark' src={player.photo} height='70' width="60" alt="player" />
+                    })
+                }
+            </div>
         </div>
-        <div className="d-flex flex-row">
-            Midfielders:
-            {
-                MID.map((player)=>{
-                    // return player.details.first_name
-                    return <img classNames="p-1" src={player.photo} height='70' width="60" alt="player" />
-                })
-            }
+        <div className="d-flex">
+            <div className="col-2">
+                <div className='text-center'>Midfielders:</div>
+            </div>
+            <div className="col-10">
+                {
+                    MID.map((player)=>{
+                        // return player.details.first_name
+                        return <img className='border border-dark' src={player.photo} height='70' width="60" alt="player" />
+                    })
+                }
+            </div>
         </div>
-        <div className="d-flex flex-row">
-            Forwards: 
-            {
-                FWD.map((player)=>{
-                    // return player.details.first_name
-                    return <img classNames="p-1" src={player.photo} height='70' width="60" alt="player" />
-                })
-            }
+        <div className="d-flex">
+            <div className="col-2">
+                <div className='text-center'>Forward:</div>
+            </div>
+            <div className="col-10">
+                {
+                    FWD.map((player)=>{
+                        // return player.details.first_name
+                        return <img className='border border-dark' src={player.photo} height='70' width="60" alt="player" />
+                    })
+                }
+            </div>
         </div>
     </div>
   )
@@ -113,8 +132,8 @@ function GameweekStatus() {
     
   return (
     <div className='container border'>
-        <h1>Gameweek Status</h1>
-        <p>Current Gameweek : {gameweek}</p>
+        <div className='display-6'>Gameweek Status</div>
+        <div className='lead text-center'>Current Gameweek : {gameweek}</div>
         <Scores DEF={currentPlayers.DEF} MID={currentPlayers.MID} FWD={currentPlayers.FWD} GKP={currentPlayers.GKP} gameweekScores={gameweekScores}/>
     </div>
   )

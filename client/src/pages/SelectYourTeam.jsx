@@ -20,7 +20,7 @@ function SelectYourTeam() {
   
   const addPlayer = async (data) => {
     for(let i = 0; i < teamData[data.pos].length; i++){
-      if(teamData[data.pos][i].details.id==data.details.id){
+      if(teamData[data.pos][i].details.id===data.details.id){
         return alert(`${data.details.first_name} ${data.details.second_name} is already on your team`);
       }
     }
@@ -41,7 +41,7 @@ function SelectYourTeam() {
   }
 
   const delPlayer = async (newTeamData) => {
-    const res=await axios.post('http://localhost:8080/addplayer/updateteam',{
+    await axios.post('http://localhost:8080/addplayer/updateteam',{
       team: newTeamData
     },{withCredentials:true})
     //setTeamData(newTeamData);
@@ -50,7 +50,7 @@ function SelectYourTeam() {
 
 
   return (
-    <div className="row">
+    <div className="row p-2">
       <div className="col">
         <PlayerSelector p_selected={(data)=>{setPlayerData(data)}}/>
       </div>
