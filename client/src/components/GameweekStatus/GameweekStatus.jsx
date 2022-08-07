@@ -46,7 +46,7 @@ function Scores({DEF,MID,FWD,GKP,gameweekScores}) {
                 {
                     GKP.map((player)=>{
                         // return player.details.first_name
-                        return <img className='border border-dark' src={player.photo} height='70' width="60" alt="player" />
+                        return <img className='p-1' src={player.photo} height='70' width="60" alt="player" />
                     })
                 }
             </div>
@@ -59,7 +59,7 @@ function Scores({DEF,MID,FWD,GKP,gameweekScores}) {
                 {
                     DEF.map((player)=>{
                         // return player.details.first_name
-                        return <img className='border border-dark' src={player.photo} height='70' width="60" alt="player" />
+                        return <img className='p-1' src={player.photo} height='70' width="60" alt="player" />
                     })
                 }
             </div>
@@ -72,7 +72,7 @@ function Scores({DEF,MID,FWD,GKP,gameweekScores}) {
                 {
                     MID.map((player)=>{
                         // return player.details.first_name
-                        return <img className='border border-dark' src={player.photo} height='70' width="60" alt="player" />
+                        return <img className='p-1' src={player.photo} height='70' width="60" alt="player" />
                     })
                 }
             </div>
@@ -85,7 +85,7 @@ function Scores({DEF,MID,FWD,GKP,gameweekScores}) {
                 {
                     FWD.map((player)=>{
                         // return player.details.first_name
-                        return <img className='border border-dark' src={player.photo} height='70' width="60" alt="player" />
+                        return <img className='p-1' src={player.photo} height='70' width="60" alt="player" />
                     })
                 }
             </div>

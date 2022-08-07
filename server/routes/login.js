@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-const jwtAuth = require("../middleware/jwtAuth");
 const User = require("../models/User");
+const bcrypt = require("bcryptjs");
 
 // request body of json form => { email, password }
 router.post("/", async (req, res) => {
@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
             error: "User not found"
         });
     }
-    if (user.password !== password) {
+    if (!   bcrypt.compare(password, user.password)) {
         return res.send({
             error: "Wrong password"
         });

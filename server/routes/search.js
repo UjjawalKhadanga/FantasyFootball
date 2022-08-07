@@ -58,7 +58,7 @@ router.post('/', jwtAuth, (req,res) => {
 	}
 
 	// sending the results in response
-	// console.log(results)
+	console.log(results)
 	return res.send({
 		input: {
 			minCost,

@@ -38,7 +38,7 @@ export default function PlayerStats(props) {
   
   if(props.player){
   return (
-    <div className="player.details-stats container border border-dark border-2 ">
+    <div className="container border border-dark border-2 ">
       <div className="col text-center">
         <div className='d-flex justify-content-center w-100' style={{height:"250px", width: "200px"}}>
           <img src={props.player.photo} alt={`${props.player.details.first_name}`}/>

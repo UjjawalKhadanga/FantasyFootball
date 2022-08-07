@@ -121,7 +121,6 @@ export default function MyteamDisplay(props) {
         <div className='field-area'  onLoad={is_captain}>
             <img src={imgsrc} alt="" height={600} width={600} className='field' />
 
-
             <div className='plFWD0' onClick={() => {player_onclick(0, 4, 'plFWD0')}}>
             <img src={props.teamData.FWD[0].photo} alt="" height={70} width={60}/>
             <p className='bg-info text-center'>{props.teamData.FWD[0].details.web_name}</p>
@@ -166,7 +165,6 @@ export default function MyteamDisplay(props) {
             <img src={props.teamData.GKP[0].photo} alt="" height={70} width={60}/>
             <p className='bg-info text-center'>{props.teamData.GKP[0].details.web_name}</p>
             </div>
-
             <div className='plFWD1' onClick={() => {player_onclick(1, 4, 'plFWD1')}}>
             <img src={props.teamData.FWD[1].photo} alt="" height={70} width={60}/>
             <p className='bg-info text-center'>{props.teamData.FWD[1].details.web_name}</p>
@@ -187,7 +185,6 @@ export default function MyteamDisplay(props) {
             <button className='c_btn btn btn-dark' onClick={() => {set_captain=true;}}>Select Captian</button>
             <button className='vc_btn btn btn-secondary' onClick={() => {set_v_captain=true;}}>Select Vice-Captian</button>
         </div>
-        
     </div>
   )
 
